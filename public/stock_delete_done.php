@@ -30,18 +30,16 @@ if (isset($_POST["token"]) && $_POST["token"] === $_SESSION['token'])
   	exit();
   }
   print '<p>削除しました。</p>';
-  print '<form action="list.php">';
-  print '<input type="submit" value="在庫一覧へ">';
-  print '</form>';
 }
 else
 {
   echo "不正なリクエストです";
-  print '<form action="list.php">';
-  print '<input type="submit" value="在庫一覧へ">';
-  print '</form>';
 }
 ?>
+
+<form action="list.php">
+<input type="submit" value="在庫一覧へ">
+</form>
 
 </body>
 </html>
