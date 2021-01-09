@@ -1,18 +1,6 @@
 <?php
-session_start();
-session_regenerate_id(true);
-if(isset($_SESSION['login'])==false)
-{
-    print'ログインされません。<br />';
-    print'<a href="../user_login/login_form.html">ログイン画面へ</a>';
-    exit();
-}
-else
-{
-    print $_SESSION['user_name'];
-    print'さんログイン中<br />';
-    print'<br />';
-}
+require_once('../login_certification/certification.php');
+certification();
 ?>
 
 <!DOCTYPE html>
@@ -33,32 +21,32 @@ try
 require_once('../sanitize/sanitize.php');
 $post=sanitize($_POST);
 
-if (!empty($_POST['stock_id'])) 
+if (!empty($_POST['stock_id']))
 {
 	$stock_id=$_POST['stock_id'];
 }
 
 if (!empty($_POST['purchase_date']))
 {
-	$stock_purchase_date=$_POST['purchase_date'];	
+	$stock_purchase_date=$_POST['purchase_date'];
 }
 
-if (!empty($_POST['deadline'])) 
+if (!empty($_POST['deadline']))
 {
 	$stock_deadline=$_POST['deadline'];
 }
 
-if (!empty($_POST['stock_name'])) 
+if (!empty($_POST['stock_name']))
 {
 	$stock_name=$_POST['stock_name'];
 }
 
-if (!empty($_POST['price'])) 
+if (!empty($_POST['price']))
 {
 	$stock_price=$_POST['price'];
 }
 
-if (!empty($_POST['number'])) 
+if (!empty($_POST['number']))
 {
 	$stock_number=$_POST['number'];
 }
@@ -72,38 +60,38 @@ $dbh->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 $sql='UPDATE stocks SET purchase_date=:purchase_date,deadline=:deadline,stock_name=:stock_name,price=:price,number=:number WHERE stock_id=:stock_id';
 $stmt=$dbh->prepare($sql);
 
-if(isset($stock_id)) 
+if(isset($stock_id))
 {
    $data[':stock_id']=(int)$stock_id;
 }
-		
-if(isset($stock_purchase_date)) 
+
+if(isset($stock_purchase_date))
 {
    $data[':purchase_date']=$stock_purchase_date;
 }
-		
-if(isset($stock_deadline)) 
+
+if(isset($stock_deadline))
 {
    $data[':deadline']=$stock_deadline;
 }
-		
-if(isset($stock_name)) 
+
+if(isset($stock_name))
 {
    $data[':stock_name']=$stock_name;
 }
-		
-if(isset($stock_price)) 
+
+if(isset($stock_price))
 {
    $data[':price']=(int)$stock_price;
 }
-		
-if(isset($stock_number)) 
+
+if(isset($stock_number))
 {
    $data[':number']=(int)$stock_number;
 }
-		
+
 $stmt->execute($data);
-		
+
 $dbh=null;
 
 print '修正しました。<br />';

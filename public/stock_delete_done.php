@@ -1,3 +1,8 @@
+<?php
+require_once('../login_certification/certification.php');
+certification();
+?>
+
 <!DOCTYPE html>
 <html>
 <head>

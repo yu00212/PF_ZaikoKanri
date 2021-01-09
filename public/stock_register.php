@@ -1,4 +1,9 @@
-<!DOCTYPE html>
+<?php
+require_once('../login_certification/certification.php');
+certification();
+?>
+
+<!DOCTYPE html>
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
@@ -22,7 +27,7 @@
       <label for="deadline">消費期限<font color="red">※</font>：</label>
       <input type="date" name="deadline" value="2020-11-13" required><br>
     </p>
-    
+
     <p>
       <label for="stock_name">商品名<font color="red">※</font>：　</label>
       <input type="text" name="stock_name" style="width:160px" size="50" required><br>
@@ -32,7 +37,7 @@
       <label for="price">値段<font color="red">※</font>：　　</label>
       <input type="text" name="price" style="width:80px" size="50" required><br>
     </p>
-    
+
     <p>
       <label for="number">在庫数<font color="red">※</font>：　</label>
       <input type="number" name="number" style="width:80px" required><br>
@@ -42,7 +47,7 @@
       <input type="button" onclick="history.back()" value="戻る">
       <input type="submit"  value="登録">
 
-    </form> 
+    </form>
 </div>
 
 </body>
