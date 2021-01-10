@@ -4,47 +4,47 @@ certification();
 ?>
 
 <!DOCTYPE html>
-<html lang="ja">
+<html lang = "ja">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="css/common.css">
+<meta charset = "UTF-8">
+<meta name = "viewport" content = "width=device-width, initial-scale=1.0">
+<link rel = "stylesheet" href = "css/common.css">
 <title>在庫修正</title>
 </head>
 <body>
 
 <?php
 require_once('../sanitize/sanitize.php');
-$post=sanitize($_POST);
+$post = sanitize($_POST);
 
 if (!empty($_POST['stockid']))
 {
-	$stock_id=$_POST['stockid'];
+	$stock_id = $_POST['stockid'];
 }
 
 if (!empty($_POST['purchase_date']))
 {
-	$stock_purchase_date=$_POST['purchase_date'];
+	$stock_purchase_date = $_POST['purchase_date'];
 }
 
 if (!empty($_POST['deadline']))
 {
-	$stock_deadline=$_POST['deadline'];
+	$stock_deadline = $_POST['deadline'];
 }
 
 if (!empty($_POST['stock_name']))
 {
-	$stock_name=$_POST['stock_name'];
+	$stock_name = $_POST['stock_name'];
 }
 
 if (!empty($_POST['price']))
 {
-	$stock_price=$_POST['price'];
+	$stock_price = $_POST['price'];
 }
 
 if (!empty($_POST['number']))
 {
-	$stock_number=$_POST['number'];
+	$stock_number = $_POST['number'];
 }
 ?>
 
@@ -87,15 +87,15 @@ if (!empty($_POST['number']))
 <?php else : ?>
   <p>上記のように変更します。</p>
   <p>問題なければOKを押してください</p>
-  <form method="post" action="stock_edit_done.php">
-  <input type="hidden" name="stock_id" value=" <?php print $stock_id ?>">
-  <input type="hidden" name="purchase_date" value=" <?php print $stock_purchase_date ?>">
-  <input type="hidden" name="deadline" value="<?php print $stock_deadline ?>">
-  <input type="hidden" name="stock_name" value="<?php print $stock_name ?>">
-  <input type="hidden" name="price" value="<?php print $stock_price ?>">
-  <input type="hidden" name="number" value="<?php print $stock_number ?>">
-  <input type="button" onclick="history.back()" value="戻る">
-  <input type="submit" value="ＯＫ">
+  <form method = "post" action = "stock_edit_done.php">
+  <input type = "hidden" name = "stock_id" value = " <?php print $stock_id ?>">
+  <input type = "hidden" name = "purchase_date" value = " <?php print $stock_purchase_date ?>">
+  <input type = "hidden" name = "deadline" value = "<?php print $stock_deadline ?>">
+  <input type = "hidden" name = "stock_name" value = "<?php print $stock_name ?>">
+  <input type = "hidden" name = "price" value = "<?php print $stock_price ?>">
+  <input type = "hidden" name = "number" value = "<?php print $stock_number ?>">
+  <input type = "button" onclick = "history.back()" value = "戻る">
+  <input type = "submit" value = "ＯＫ">
   </form>
 <?php endif; ?>
 
