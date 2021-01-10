@@ -4,129 +4,83 @@ certification();
 ?>
 
 <!DOCTYPE html>
-<html lang="ja">
+<html lang = "ja">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="../public/css/common.css">
+<meta charset = "UTF-8">
+<meta name = "viewport" content = "width=device-width, initial-scale=1.0">
+<link rel = "stylesheet" href = "../public/css/common.css">
 <title>ユーザー修正</title>
 </head>
 <body>
 
 <?php
-require_once 'libs/Smarty.class.php';
-require_once '/path/to/Smarty.class.php';
-
-$smarty = new Smarty();
-
-$smarty->template_dir = '/path/to/templates/';
-$smarty->compile_dir  = '/path/to/templates_c/';
-$smarty->config_dir   = '/path/to/configs/';
-$smarty->cache_dir    = '/path/to/cache/';
-
-$smarty->escape_html  = true; // デフォルトでエスケープ処理を行う
-
-// アサイン
-$smarty->assign('name','Ned');
-
-// 出力
-$smarty->display('index.tpl');
-
-if (!empty($_POST['userid']))
+if (!empty($_POST['user_id']))
 {
-	$user_id=$_POST['userid'];
+	$user_id = $_POST['user_id'];
 }
 
 if (!empty($_POST['name']))
 {
-	$user_name=$post['name'];
+	$user_name = $_POST['name'];
 }
 
 if (!empty($_POST['email']))
 {
-	$user_email=$post['email'];
+	$user_email = $_POST['email'];
 }
 
 if (!empty($_POST['pass']))
 {
-	$user_pass=$post['pass'];
+	$user_pass = $_POST['pass'];
 }
 
 if (!empty($_POST['pass2']))
 {
-	$user_pass2=$post['pass2'];
+	$user_pass2 = $_POST['pass2'];
 }
-
-if($user_name=='')
-{
-	print '名前が入力されていません。<br />';
-}
-else
-{
-	print '名前：';
-	print $user_name;
-	print '<br />';
-}
-
-if($user_email=='')
-{
-	print 'メールアドレスが入力されていません。<br />';
-}
-else
-{
-	print 'メールアドレス：';
-	print $user_email;
-	print '<br />';
-}
-
-if($user_pass=='')
-{
-	print 'パスワードが入力されていません。<br />';
-}
-
-if($user_pass!=$user_pass2)
-{
-	print 'パスワードが一致しません。<br />';
-}
-
-if($user_name=='' ||$user_email=='' ||$user_pass=='' || $user_pass!=$user_pass2)
-{
-	print '<form>';
-	print '<input type="button" onclick="history.back()" value="戻る">';
-	print '</form>';
-}
-else
-{
-	$user_pass=md5($user_pass);
-	print '上記のように変更します。<br />';
-	print '<form method="post" action="user_edit_done.php">';
-
-	if(isset($user_id))
-	{
-		print '<input type="hidden" name="userid" value="'.$user_id.'">';
-	}
-
-	if(isset($user_name))
-	{
-		print '<input type="hidden" name="name" value="'.$user_name.'">';
-	}
-
-    if(isset($user_email))
-	{
-		print '<input type="hidden" name="email" value="'.$user_email.'">';
-	}
-
-	if(isset($user_pass))
-	{
-		print '<input type="hidden" name="pass" value="'.$user_pass.'">';
-	}
-
-	print '<br />';
-	print '<input type="button" onclick="history.back()" value="戻る">';
-	print '<input type="submit" value="ＯＫ">';
-	print '</form>';
-}
-
 ?>
+
+<?php var_dump($_POST['user_id']);?>
+<?php var_dump($user_id);?>
+
+
+<?php if($user_name == '') : ?>
+  <p>名前が入力されていません。</p>
+<?php else : ?>
+  <p>名前：<?php print $user_name ?></p>
+<?php endif; ?>
+
+<?php if($user_email == '') : ?>
+  <p>メールアドレスが入力されていません。</p>
+<?php else : ?>
+  <p>メールアドレス：<?php print $user_email ?></p>
+<?php endif; ?>
+
+<?php if($user_pass == '') : ?>
+  <p>パスワードが入力されていません。</p>
+<?php endif; ?>
+
+<?php if($user_pass !== $user_pass2) : ?>
+  <p>パスワードが一致しません。</p>
+<?php endif; ?>
+
+<?php if($user_name == '' || $user_email == '' || $user_pass == '' || $user_pass != $user_pass2) : ?>
+  <form>
+  <input type="button" onclick="history.back()" value="戻る">
+  </form>
+<?php else : ?>
+  <p>上記のように変更します。</p>
+  <p>問題なければOKを押してください。</p>
+  <?php $user_pass = md5($user_pass); ?>
+  <form method = "post" action = "user_edit_done.php">
+  <input type = "hidden" name　=　"user_id" value　=　"<?php print $user_id ?>">
+	<input type = "hidden" name = "name" value = "<?php print $user_name ?>">
+	<input type = "hidden" name = "email" value = "<?php print $user_email ?>">
+	<input type = "hidden" name = "pass" value = "<?php print $user_pass ?>">
+  <input type = "button" onclick = "history.back()" value = "戻る">
+	<input type = "submit" value = "ＯＫ">
+	</form>
+<?php endif; ?>
+
 </body>
 </html>

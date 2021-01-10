@@ -4,107 +4,75 @@ certification();
 ?>
 
 <!DOCTYPE html>
-<html lang="ja">
+<html lang = "ja">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="css/common.css">
+<meta charset = "UTF-8">
+<meta name = "viewport" content = "width=device-width, initial-scale=1.0">
+<link rel = "stylesheet" href = "css/common.css">
 <title>在庫登録</title>
 </head>
 <body>
 
 <?php
-
 require_once('../sanitize/sanitize.php');
-$post=sanitize($_POST);
+$post = sanitize($_POST);
 
-$stock_purchase_date=$_POST['purchase_date'];
-$stock_deadline=$_POST['deadline'];
-$stock_name=$_POST['stock_name'];
-$stock_price=$_POST['price'];
-$stock_number=$_POST['number'];
+$stock_purchase_date = $_POST['purchase_date'];
+$stock_deadline = $_POST['deadline'];
+$stock_name = $_POST['stock_name'];
+$stock_price = $_POST['price'];
+$stock_number = $_POST['number'];
+?>　
 
-//HTMLとPHPで分けれるか調査
-list($year, $month, $day) = explode("-", $stock_purchase_date);
-if (checkdate($month, $day, $year))
-{
-  print '購入日　：';
-  print $stock_purchase_date;
-  print '<br />';
-}
-else
-{
-  print '購入日をきちんと入力してください。<br />';
-}
+<?php list($year, $month, $day) = explode("-", $stock_purchase_date); ?>
+<?php if(checkdate($month, $day, $year)) : ?>
+  <p>購入日　：<?php print $stock_purchase_date ?></p>
+<?php else : ?>
+  <p>購入日をきちんと入力してください。</p>
+<?php endif; ?>
 
-list($year, $month, $day) = explode("-", $stock_deadline);
-if (checkdate($month, $day, $year))
-{
-  print '消費期限：';
-  print $stock_deadline;
-  print '<br />';
-}
-else
-{
-  print '消費期限をきちんと入力してください。<br />';
-}
+<?php list($year, $month, $day) = explode("-", $stock_deadline); ?>
+<?php if(checkdate($month, $day, $year)) : ?>
+  <p>消費期限：<?php print $stock_deadline ?></p>
+<?php else : ?>
+  <p>消費期限をきちんと入力してください。</p>
+<?php endif; ?>
 
-if($stock_name == '')
-{
-  print '商品名をきちんと入力してください。';
-}
-else
-{
-  print '商品名　：';
-  print $stock_name;
-  print '<br />';
-}
+<?php if($stock_name == '') : ?>
+  <p>商品名をきちんと入力してください。</p>
+<?php else : ?>
+  <p>商品名　：<?php print $stock_name ?></p>
+<?php endif; ?>
 
-if(preg_match('/\A[0-9]+\z/',$stock_price)==0)
-{
-  print '値段をきちんと入力してください。<br />';
-}
-else
-{
-  print '値段　　：';
-  print $stock_price;
-  print '<br />';
-}
+<?php if(preg_match('/\A[0-9]+\z/',$stock_price) == 0) : ?>
+  <p>値段をきちんと入力してください。</p>
+<?php else : ?>
+  <p>値段　　：<?php print $stock_price ?></p>
+<?php endif; ?>
 
-if(preg_match('/\A[0-9]+\z/',$stock_number)==0)
-{
-  print '数量をきちんと入力してください。<br />';
-}
-else
-{
-  print '数量　　：';
-  print $stock_number;
-  print '<br />';
-  print '<br />';
-}
+<?php if(preg_match('/\A[0-9]+\z/',$stock_number) == 0) : ?>
+  <p>数量をきちんと入力してください。</p>
+<?php else : ?>
+  <p>数量　　：<?php print $stock_number ?></p>
+<?php endif; ?><br>
 
-if($stock_purchase_date == false || $stock_deadline == false || $stock_name == '' || preg_match('/\A[0-9]+\z/',$stock_price) == 0 || preg_match('/\A[0-9]+\z/',$stock_number) == 0)
-{
-  print '<form>';
-  print '<input type="button" onclick="history.back()" value="戻る">';
-  print '</form>';
-}
-else
-{
-  print '上記の商品を追加します。<br />';
-  print '問題なければOKを押してください。<br />';
-  print '<form method="post" action="stock_register_done.php">';
-  print '<input type="hidden" name="purchase_date" value="'.$stock_purchase_date.'">';
-  print '<input type="hidden" name="deadline" value="'.$stock_deadline.'">';
-  print '<input type="hidden" name="stock_name" value="'.$stock_name.'">';
-  print '<input type="hidden" name="price" value="'.$stock_price.'">';
-  print '<input type="hidden" name="number" value="'.$stock_number.'">';
-  print '<br />';
-  print '<input type="button" onclick="history.back()" value="戻る">';
-  print '<input type="submit" value="ＯＫ">';
-  print '</form>';
-}
+<?php if($stock_purchase_date == false || $stock_deadline == false || $stock_name == '' || preg_match('/\A[0-9]+\z/',$stock_price) == 0 || preg_match('/\A[0-9]+\z/',$stock_number) == 0) : ?>
+  <form>
+  <input type = "button" onclick = "history.back()" value = "戻る">
+  </form>
+<?php else : ?>
+  <p>上記の商品を追加します。</p>
+  <p>問題なければOKを押してください。</p>
+  <form method = "post" action = "stock_register_done.php">
+  <input type = "hidden" name = "purchase_date" value = " <?php print $stock_purchase_date ?>">
+  <input type = "hidden" name = "deadline" value = "<?php print $stock_deadline ?>">
+  <input type = "hidden" name = "stock_name" value = "<?php print $stock_name ?>">
+  <input type = "hidden" name = "price" value = "<?php print $stock_price ?>">
+  <input type = "hidden" name = "number" value = "<?php print $stock_number ?>">
+  <input type = "button" onclick = "history.back()" value="戻る">
+  <input type = "submit" value = "ＯＫ">
+  </form>
+<?php endif; ?>
 
-?>
 </body>
 </html>
