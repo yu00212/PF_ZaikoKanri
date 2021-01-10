@@ -4,11 +4,11 @@ certification();
 ?>
 
 <!DOCTYPE html>
-<html lang="ja">
+<html lang = "ja">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="../public/css/common.css">
+<meta charset = "UTF-8">
+<meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
+<link rel = "stylesheet" href = "../public/css/common.css">
 <title>ユーザー情報</title>
 </head>
 <body>
@@ -16,19 +16,19 @@ certification();
 <?php
 
 require_once('../db_connect/db_connect.php');
-$user_id=$_GET['userid'];
+$user_id = $_GET['user_id'];
 
 try
 {
-$sql='SELECT name,email FROM users WHERE id=?';
-$stmt=connect()->prepare($sql);
-$data[]=$user_id;
+$sql = 'SELECT name,email FROM users WHERE id = ?';
+$stmt = connect()->prepare($sql);
+$data[] = $user_id;
 $stmt->execute($data);
 
-$rec=$stmt->fetch(PDO::FETCH_ASSOC);
-$user_name=$rec['name'];
-$user_email=$rec['email'];
-$dbh=null;
+$rec = $stmt->fetch(PDO::FETCH_ASSOC);
+$user_name = $rec['name'];
+$user_email = $rec['email'];
+$dbh = null;
 }
 catch(Exception $e)
 {
@@ -53,7 +53,7 @@ if(isset($user_email))
 }
 
 print '<form>';
-print '<input type="button" onclick="history.back()" value="戻る">';
+print '<input type = "button" onclick = "history.back()" value = "戻る">';
 print '</form>';
 
 ?>

@@ -4,11 +4,11 @@ certification();
 ?>
 
 <!DOCTYPE html>
-<html lang="ja">
+<html lang = "ja">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="../public/css/common.css">
+<meta charset = "UTF-8">
+<meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
+<link rel = "stylesheet" href = "../public/css/common.css">
 <title>ユーザー削除</title>
 </head>
 <body>
@@ -16,15 +16,15 @@ certification();
 <?php
 
 require_once('../db_connect/db_connect.php');
-$user_id=$_POST['userid'];
+$user_id = $_POST['user_id'];
 
 try
 {
-$sql='DELETE FROM users WHERE id=?';
-$stmt=connect()->prepare($sql);
-$data[]=$user_id;
+$sql = 'DELETE FROM users WHERE id = ?';
+$stmt = connect()->prepare($sql);
+$data[] = $user_id;
 $stmt->execute($data);
-$dbh=null;
+$dbh = null;
 }
 catch (Exception $e)
 {
@@ -37,8 +37,8 @@ catch (Exception $e)
 
 <p>削除しました。</p><br>
 <br>
-<form action="../public/list.php">
-<input type="submit" value="在庫一覧へ">
+<form action = "../public/list.php">
+<input type = "submit" value = "在庫一覧へ">
 </form>
 
 </body>

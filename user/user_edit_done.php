@@ -4,68 +4,74 @@ certification();
 ?>
 
 <!DOCTYPE html>
-<html lang="ja">
+<html lang = "ja">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="../public/css/common.css">
+<meta charset = "UTF-8">
+<meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
+<link rel = "stylesheet" href = "../public/css/common.css">
 <title>ユーザー修正</title>
 </head>
 <body>
 
 <?php
-
 require_once('../db_connect/db_connect.php');
 require_once('../sanitize/sanitize.php');
-$post=sanitize($_POST);
+$post = sanitize($_POST);
 
-if(!empty($post['userid']))
+var_dump($_POST['user_id']);
+var_dump($_POST['name']);
+var_dump($_POST['email']);
+var_dump($_POST['pass']);
+
+$user_id=$_GET['user_id'];
+
+//if(!empty($_POST['user_id']))
+//{
+  //$user_id = $_POST['user_id'];
+//}
+
+if(!empty($_POST['name']))
 {
-    $user_id=$post['userid'];
+  $user_name = $_POST['name'];
 }
 
-if(!empty($post['name']))
+if(!empty($_POST['email']))
 {
-    $user_name=$post['name'];
+  $user_email = $_POST['email'];
 }
 
-if(!empty($post['email']))
+if(!empty($_POST['pass']))
 {
-    $user_email=$post['email'];
-}
-
-if(!empty($post['pass']))
-{
-    $user_pass=$post['pass'];
+  $user_pass = $_POST['pass'];
 }
 
 try
 {
-$sql='UPDATE users SET name=:name,email=:email,password=:pass WHERE id=:userid';
-$stmt=connect()->prepare($sql);
+$sql = 'UPDATE users SET name = :name, email = :email, password = :pass WHERE id = :user_id';
+$stmt = connect()->prepare($sql);
 
 if(isset($user_id))
 {
-  $data[':userid']=(int)$user_id;
+  $data[':user_id'] = (int)$user_id;
 }
 
 if(isset($user_name))
 {
-  $data[':name']=$user_name;
+  $data[':name'] = $user_name;
 }
 
 if(isset($user_email))
 {
-  $data[':email']=$user_email;
+  $data[':email'] = $user_email;
 }
 
 if(isset($user_pass))
 {
-  $data[':pass']=$user_pass;
+  $data[':pass'] = $user_pass;
 }
 
 $stmt->execute($data);
-$dbh=null;
+$dbh = null;
 }
 catch (Exception $e)
 {
@@ -78,8 +84,8 @@ catch (Exception $e)
 
 <p>修正しました。</p>
 <br>
-<form action="../public/list.php">
-<input type="submit" value="ホーム画面へ">
+<form action = "../public/list.php">
+<input type = "submit" value = "ホーム画面へ">
 </form>
 
 </body>
