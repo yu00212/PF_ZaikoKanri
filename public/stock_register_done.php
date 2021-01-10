@@ -18,33 +18,33 @@ require_once('../db_connect/db_connect.php');
 require_once('../sanitize/sanitize.php');
 $post=sanitize($_POST);
 
+if(!empty($_POST['purchase_date']))
+{
+  $stock_purchase_date=$_POST['purchase_date'];
+}
+
+if(!empty($_POST['deadline']))
+{
+  $stock_deadline=$_POST['deadline'];
+}
+
+if(!empty($_POST['stock_name']))
+{
+  $stock_name=$_POST['stock_name'];
+}
+
+if(!empty($_POST['price']))
+{
+  $stock_price=$_POST['price'];
+}
+
+if(!empty($_POST['number']))
+{
+  $stock_number=$_POST['number'];
+}
+
 try
 {
-  if(!empty($_POST['purchase_date']))
-  {
-    $stock_purchase_date=$_POST['purchase_date'];
-  }
-
-  if(!empty($_POST['deadline']))
-  {
-    $stock_deadline=$_POST['deadline'];
-  }
-
-  if(!empty($_POST['stock_name']))
-  {
-    $stock_name=$_POST['stock_name'];
-  }
-
-  if(!empty($_POST['price']))
-  {
-    $stock_price=$_POST['price'];
-  }
-
-  if(!empty($_POST['number']))
-  {
-    $stock_number=$_POST['number'];
-  }
-
   $sql='INSERT INTO stocks(purchase_date,deadline,stock_name,price,number) VALUES (?,?,?,?,?)';
   $stmt=connect()->prepare($sql);
   $data[]=$stock_purchase_date;
