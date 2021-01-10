@@ -19,12 +19,12 @@ require_once('../db_connect/db_connect.php');
 
 try
 {
-  $stmt  =  connect()->prepare("SELECT * FROM stocks WHERE stock_name LIKE (:stock_name) ");
+  $stmt = connect()->prepare("SELECT * FROM stocks WHERE stock_name LIKE (:stock_name) ");
 
   if($stmt)
   {
     session_start();
-    $search_name  =  $_SESSION['POST'];
+    $search_name = $_SESSION['POST'];
     unset($_SESSION['POST'] );
 
     if(isset($search_name))
@@ -60,7 +60,7 @@ try
 catch(PDOException $e)
 {
 	print('Error:'.$e->getMessage());
-	$errors['error']  =  "データベース接続失敗しました。";
+	$errors['error'] = "データベース接続失敗しました。";
 }
 
 ?>

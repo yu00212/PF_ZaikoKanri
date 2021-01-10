@@ -19,10 +19,10 @@ require_once('../db_connect/db_connect.php');
 $stock_id = $_GET['stockid'];
 
 // 暗号学的的に安全なランダムなバイナリを生成し、それを16進数に変換することでASCII文字列に変換
-$toke_byte  =  openssl_random_pseudo_bytes(16);
-$token  =  bin2hex($toke_byte);
+$toke_byte = openssl_random_pseudo_bytes(16);
+$token = bin2hex($toke_byte);
 // 生成したトークンをセッションに保存
-$_SESSION['token']  =  $token;
+$_SESSION['token'] = $token;
 
 try
 {

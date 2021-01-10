@@ -16,7 +16,7 @@ certification();
 <?php
 session_start();
 require_once('../db_connect/db_connect.php');
-$stock_id  =  $_POST['stock_id'];
+$stock_id = $_POST['stock_id'];
 
 if (isset($_POST["token"]) && $_POST["token"]  ===  $_SESSION['token'])
 {
