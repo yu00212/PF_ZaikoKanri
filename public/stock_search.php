@@ -23,7 +23,6 @@ try
 
   if($stmt)
   {
-    session_start();
     $search_name = $_SESSION['POST'];
     unset($_SESSION['POST'] );
 
