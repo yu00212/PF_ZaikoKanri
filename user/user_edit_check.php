@@ -73,7 +73,7 @@ if (!empty($_POST['pass2']))
   <p>問題なければOKを押してください。</p>
   <?php $user_pass = md5($user_pass); ?>
   <form method = "post" action = "user_edit_done.php">
-  <input type = "hidden" name　=　"user_id" value　=　"<?php print $user_id ?>">
+  <input type = "hidden" name = "user_id" value = "<?php print $user_id ?>">
 	<input type = "hidden" name = "name" value = "<?php print $user_name ?>">
 	<input type = "hidden" name = "email" value = "<?php print $user_email ?>">
 	<input type = "hidden" name = "pass" value = "<?php print $user_pass ?>">
