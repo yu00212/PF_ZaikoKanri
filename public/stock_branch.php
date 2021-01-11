@@ -8,7 +8,7 @@ if(isset($_POST['disp']) == true)
     exit();
   }
   $stock_id = $_POST['stockid'];
-  header('Location:stock_disp.php?stockid = '.$stock_id);
+  header('Location:stock_disp.php?stockid='.$stock_id);
   exit();
 }
 
@@ -26,7 +26,7 @@ if(isset($_POST['edit']) == true)
     exit();
   }
   $stock_id = $_POST['stockid'];
-  header('Location:stock_edit.php?stockid = '.$stock_id);
+  header('Location:stock_edit.php?stockid='.$stock_id);
   exit();
 }
 
@@ -38,7 +38,7 @@ if(isset($_POST['delete']) == true)
     exit();
   }
   $stock_id = $_POST['stockid'];
-  header('Location:stock_delete.php?stockid = '.$stock_id);
+  header('Location:stock_delete.php?stockid='.$stock_id);
   exit();
 }
 
@@ -53,7 +53,7 @@ if(isset($_POST['search_name']) == true)
     exit();
   }
   $search_name = $_POST['search_name'];
-  header('Location:stock_search.php?search_name = '.$search_name);
+  header('Location:stock_search.php?search_name='.$search_name);
   exit();
 }
 
