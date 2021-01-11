@@ -14,7 +14,6 @@ certification();
 <body>
 
 <?php
-session_start();
 require_once('../db_connect/db_connect.php');
 $stock_id = $_POST['stock_id'];
 
