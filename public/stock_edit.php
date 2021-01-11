@@ -43,16 +43,16 @@ catch(Exception $e)
 <p>全ての項目を入力後、修正ボタンを押してください。</p>
 
 <form method = "post" action = "stock_edit_check.php">
-<input type = "hidden"name = "stockid" value = "<?php print $stock_id; ?>">
+<input type = "hidden" name = "stockid" value = "<?php print $stock_id; ?>">
 
 <p>
   <label for = "purchase_date">購入日：　</label>
-  <input type = "date" name = "purchase_date" value = "<?php print $stock_purchase_date ?>"><br>
+  <input type = "date" name = "purchase_date" value = "<?php print $stock_purchase_date; ?>"><br>
 </p>
 
 <p>
   <label for = "deadline">消費期限：</label>
-  <input type = "date" name = "deadline" value = "<?php print $stock_deadline ?>"><br>
+  <input type = "date" name = "deadline" value = "<?php print $stock_deadline; ?>"><br>
 </p>
 
 <p>
