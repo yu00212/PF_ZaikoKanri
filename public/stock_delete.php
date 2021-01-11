@@ -14,7 +14,6 @@ certification();
 <body>
 
 <?php
-session_start();
 require_once('../db_connect/db_connect.php');
 $stock_id = $_GET['stockid'];
 
@@ -47,8 +46,6 @@ catch(Exception $e)
 }
 ?>
 
-<!--以下、テンプレートエンジン使用修正-->
-
 <p>購入日　：<?php print $stock_purchase_date; ?></p>
 <p>消費期限：<?php print $stock_deadline; ?></p>
 <p>商品名　：<?php print $stock_name; ?></p>
@@ -57,13 +54,13 @@ catch(Exception $e)
 <p>上記の商品を削除してもよろしいでしょうか？</p>
 
 <form method = "post" action = "stock_delete_done.php">
-<input type = "hidden" name = "token" value = "<?php print $token ?>">  <!--生成したトークン付与-->
-<input type = "hidden" name = "stock_id" value = "<?php print $stock_id ?>">
-<input type = "hidden" name = "purchase_date" value = "<?php print $stock_purchase_date ?>">
-<input type = "hidden" name = "deadline" value = "<?php print $stock_deadline ?>">
-<input type = "hidden" name = "stock_name" value = "<?php print $stock_name ?>">
-<input type = "hidden" name = "price" value = "<?php print $stock_price ?>">
-<input type = "hidden" name = "stock_number" value = "<?php print $stock_number ?>">
+<input type = "hidden" name = "token" value = "<?php print $token; ?>">  <!--生成したトークン付与-->
+<input type = "hidden" name = "stock_id" value = "<?php print $stock_id; ?>">
+<input type = "hidden" name = "purchase_date" value = "<?php print $stock_purchase_date; ?>">
+<input type = "hidden" name = "deadline" value = "<?php print $stock_deadline; ?>">
+<input type = "hidden" name = "stock_name" value = "<?php print $stock_name; ?>">
+<input type = "hidden" name = "price" value = "<?php print $stock_price; ?>">
+<input type = "hidden" name = "stock_number" value = "<?php print $stock_number; ?>">
 <input type = "button" onclick = "history.back()" value = "戻る">
 <input type = "submit" value = "ＯＫ">
 </form>
