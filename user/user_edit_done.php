@@ -18,17 +18,10 @@ require_once('../db_connect/db_connect.php');
 require_once('../sanitize/sanitize.php');
 $post = sanitize($_POST);
 
-var_dump($_POST['user_id']);
-var_dump($_POST['name']);
-var_dump($_POST['email']);
-var_dump($_POST['pass']);
-
-$user_id=$_GET['user_id'];
-
-//if(!empty($_POST['user_id']))
-//{
-  //$user_id = $_POST['user_id'];
-//}
+if(!empty($_POST['user_id']))
+{
+  $user_id = $_POST['user_id'];
+}
 
 if(!empty($_POST['name']))
 {
