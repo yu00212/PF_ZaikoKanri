@@ -6,13 +6,13 @@ certification();
 <!DOCTYPE html>
 <html lang = "ja">
 <head>
-<meta charset = "UTF-8">
-<meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
-<link rel = "stylesheet" href = "css/common.css">
-<link rel = "stylesheet" href = "css/list.css">
-<link rel = "stylesheet" href = "https://use.fontawesome.com/releases/v5.0.4/css/all.css">
+　<meta charset = "UTF-8">
+　<meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
+　<link rel = "stylesheet" href = "css/common.css">
+　<link rel = "stylesheet" href = "css/list.css">
+　<link rel = "stylesheet" href = "https://use.fontawesome.com/releases/v5.0.4/css/all.css">
 <script src = "https://www.w3schools.com/lib/w3.js"></script>
-<title>商品一覧</title>
+　<title>商品一覧</title>
 </head>
 <body>
 
