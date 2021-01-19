@@ -2,13 +2,13 @@
 
 if(isset($_POST['disp']) == true)
 {
-  if(isset($_POST['stockid']) == false)
+  if(isset($_POST['stock_id']) == false)
   {
     header('Location:stock_ng.php');
     exit();
   }
-  $stock_id = $_POST['stockid'];
-  header('Location:stock_disp.php?stockid='.$stock_id);
+  $stock_id = $_POST['stock_id'];
+  header('Location:stock_disp.php?stock_id='.$stock_id);
   exit();
 }
 
@@ -20,25 +20,25 @@ if(isset($_POST['add']) == true)
 
 if(isset($_POST['edit']) == true)
 {
-  if(isset($_POST['stockid']) == false)
+  if(isset($_POST['stock_id']) == false)
   {
     header('Location:stock_ng.php');
     exit();
   }
-  $stock_id = $_POST['stockid'];
-  header('Location:stock_edit.php?stockid='.$stock_id);
+  $stock_id = $_POST['stock_id'];
+  header('Location:stock_edit.php?stock_id='.$stock_id);
   exit();
 }
 
 if(isset($_POST['delete']) == true)
 {
-  if(isset($_POST['stockid']) == false)
+  if(isset($_POST['stock_id']) == false)
   {
     header('Location:stock_ng.php');
     exit();
   }
-  $stock_id = $_POST['stockid'];
-  header('Location:stock_delete.php?stockid='.$stock_id);
+  $stock_id = $_POST['stock_id'];
+  header('Location:stock_delete.php?stock_id='.$stock_id);
   exit();
 }
 
