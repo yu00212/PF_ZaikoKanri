@@ -10,14 +10,22 @@
 
 <p>項目を入力後「ログイン」を押してください。</p>
   <form method = "POST" action = "login_check.php">
-    <label for = "email">メールアドレス：</label>
-    <input type = "email" name = "email"><br>
+    <p>
+      <label for = "email">
+        メールアドレス<font color = "red">※</font>：
+        <input type = "email" name = "email" id = "email" required><br>
+      </label>
+    </p>
 
-    <label for = "password">パスワード：</label>
-    <input type = "password" name = "pass"><br>
-    <br>
+    <p>
+      <label for = "pass">
+        パスワード<font color = "red">※</font>：
+        <input type = "password" name = "pass" id = "pass" required><br>
+      </label>
+    </p>
     <input type = "submit" value = "ログイン">
   </form>
+
   <br>
   <form action = "../user/user_add.php">
     <input type = "submit" value = "新規登録はこちら">

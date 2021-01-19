@@ -18,35 +18,39 @@ certification();
       <form method = "post" action = "stock_register_check.php" enctype = "multipart/form-data">
         <p>
           <label for = "purchase_date">
-            購入日<font color = "red">※</font>：　<input type = "date" name = "purchase_date" value = "2020-12-01" required><br>
+            購入日<font color = "red">※</font>：　
+            <input type = "date" name = "purchase_date" id = "purchase_date" value = "2020-12-01" required><br>
           </label>
         </p>
 
         <p>
           <label for = "deadline">
-            消費期限<font color = "red">※</font>：<input type = "date" name = "deadline" value = "2020-11-13" required><br>
+            消費期限<font color = "red">※</font>：
+            <input type = "date" name = "deadline" id = "deadline" value = "2020-11-13" required><br>
           </label>
         </p>
 
         <p>
           <label for = "stock_name">
-            商品名<font color = "red">※</font>：　<input type = "text" name = "stock_name" style = "width:160px" size = "50" required><br>
+            商品名<font color = "red">※</font>：　
+            <input type = "text" name = "stock_name" id = "stock_name" style = "width:160px" size = "50" required><br>
           </label>
         </p>
 
         <p>
           <label for = "price">
-            値段<font color = "red">※</font>：　　<input type = "text" name = "price" style = "width:80px" size = "50" required><br>
+            値段<font color = "red">※</font>：　　
+            <input type = "text" name = "price" id = "price" style = "width:80px" size = "50" required><br>
           </label>
         </p>
 
         <p>
           <label for = "number">
-            在庫数<font color = "red">※</font>：　<input type = "number" name = "number" style = "width:80px" required><br>
+            在庫数<font color = "red">※</font>：　
+            <input type = "number" name = "number" id = "number" style = "width:80px" required><br>
           </label>
         </p>
         <br>
-
         <input type = "button" onclick = "history.back()" value = "戻る">
         <input type = "submit"  value = "登録">
       </form>

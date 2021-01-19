@@ -12,27 +12,33 @@
 <p>※登録内容はログイン時に必要になります。<br>　メモしておいてください。</p>
 
   <form method = "post" action = "user_add_check.php">
+    <p>
+      <label for = "name">
+        ユーザー名<font color = "red">※</font>：
+        <input type = "text" name = "name" id = "name" style = "width:200px" required>
+      </label>
+    </p>
 
-  <p>
-    <label for = "name">ユーザー名<font color = "red">※</font>：</label> <!-- label->フォームと項目名を関連付ける-->
-    <input type = "text" name = "name" style = "width:200px" required>
-  </p>
+    <p>
+      <label for = "email">
+        メールアドレス<font color = "red">※</font>：
+        <input type = "email" name = "email" id = "email" required>
+      </label>
+    </p>
 
-  <p>
-    <label for = "email">メールアドレス<font color = "red">※</font>：</label>
-    <input type = "email" name = "email" required> <!-- type->部品の形式 -->
-  </p>
+    <p>
+      <label for = "pass">
+        パスワード<font color = "red">※</font>：
+        <input type = "password" name = "pass" id = "pass" required>
+      </label>
+    </p>
 
-  <p>
-    <label for = "pass">パスワード<font color = "red">※</font>：</label>
-    <input type = "password" name = "pass" required>
-  </p>
-
-  <p>
-    <label for = "pass2">パスワード再入力<font color = "red">※</font>：</label>
-    <input type = "password" name = "pass2" required>
-  </p>
-
+    <p>
+      <label for = "pass2">
+        パスワード再入力<font color = "red">※</font>：
+        <input type = "password" name = "pass2" id = "pass2" required>
+      </label>
+    </p>
     <input type = "button" onclick = "history.back()" value = "戻る">
     <input type = "submit" value = "登録">
   </form>
