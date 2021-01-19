@@ -1,22 +1,22 @@
 <?php
 require_once('../login_certification/certification.php');
 certification();
-?>
-
-<!DOCTYPE html>
-<html lang = "ja">
-<head>
-　<meta charset = "UTF-8">
-　<meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
-　<link rel = "stylesheet" href = "../public/css/common.css">
-　<title>ユーザー修正</title>
-</head>
-<body>
-
-<?php
 
 require_once('../db_connect/db_connect.php');
+require('../../../Smarty-master/libs/Smarty.class.php');
+
+
+$smarty = new Smarty();
+
+$smarty->template_dir = dirname( __FILE__ , 3).'/templates';
+$smarty->compile_dir  = dirname( __FILE__ , 3).'/templates_c';
+$smarty->config_dir   = dirname( __FILE__ , 3).'/configs';
+$smarty->cache_dir    = dirname( __FILE__ , 3).'/cache';
+
+$smarty->escape_html  = true;
+
 $user_id = $_GET['user_id'];
+$err[] = '';
 
 try
 {
@@ -24,7 +24,6 @@ $sql = 'SELECT name,email FROM users WHERE id = ?';
 $stmt = connect()->prepare($sql);
 $data[] = $user_id;
 $stmt->execute($data);
-
 $rec = $stmt->fetch(PDO::FETCH_ASSOC);
 $user_name = $rec['name'];
 $user_email = $rec['email'];
@@ -32,23 +31,21 @@ $dbh = null;
 }
 catch(Exception $e)
 {
-  echo "エラー発生：" . htmlspecialchars($e->getMessage(),ENT_QUOTES, 'UTF-8') . "<br>";
-	print'ただいま障害により大変ご迷惑をお掛けしております。';
-	exit();
+  $err['exception'] = $e->getMessage();
+}
+
+$smarty->assign('user_id', $user_id);
+$smarty->assign('user_name', $user_name);
+$smarty->assign('user_email', $user_email);
+$smarty->assign('err', $err);
+
+if(isset($err['exception']) == '')
+{
+  $smarty->display('../smarty/templates/user/user_edit.tpl');
+}
+else
+{
+  $smarty->display('../smarty/templates/err.tpl');
 }
 
 ?>
-
-<form method = "post" action = "user_edit_check.php">
-<input type = "hidden" name = "user_id" value = "<?php print $user_id ?>">
-<p>名前：<input type = "text" name = "name" style = "width:200px" value = "<?php print $user_name ?>"></p>
-<p>メールアドレス：<input type = "email" name = "email" style = "width:200px" value = "<?php print $user_email ?>"></p>
-<p>パスワード：<input type = "password" name = "pass" style = "width:200px"></p>
-<p>パスワード再入力：<input type = "password" name = "pass2" style = "width:200px"></p>
-<br>
-<input type = "button" onclick = "history.back()" value = "戻る">
-<input type = "submit" value = "ＯＫ">
-</form>
-
-</body>
-</html>

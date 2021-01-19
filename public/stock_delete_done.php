@@ -1,21 +1,22 @@
 <?php
 require_once('../login_certification/certification.php');
 certification();
-?>
 
-<!DOCTYPE html>
-<html>
-<head>
-　<meta charset = "UTF-8">
-　<meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
-　<link rel = "stylesheet" href = "css/common.css">
-　<title>在庫削除</title>
-</head>
-<body>
-
-<?php
 require_once('../db_connect/db_connect.php');
+require('../../../Smarty-master/libs/Smarty.class.php');
+
+
+$smarty = new Smarty();
+
+$smarty->template_dir = dirname( __FILE__ , 3).'/templates';
+$smarty->compile_dir  = dirname( __FILE__ , 3).'/templates_c';
+$smarty->config_dir   = dirname( __FILE__ , 3).'/configs';
+$smarty->cache_dir    = dirname( __FILE__ , 3).'/cache';
+
+$smarty->escape_html  = true;
+
 $stock_id = $_POST['stock_id'];
+$err[] = '';
 
 if (isset($_POST["token"]) && $_POST["token"]  ===  $_SESSION['token'])
 {
@@ -29,21 +30,25 @@ if (isset($_POST["token"]) && $_POST["token"]  ===  $_SESSION['token'])
   }
   catch (Exception $e)
   {
-  	echo "エラー発生：" . htmlspecialchars($e->getMessage(),ENT_QUOTES, 'UTF-8') . "<br>";
-  	print 'ただいま障害により大変ご迷惑をお掛けしております。';
-  	exit();
+    $err['exception'] = $e->getMessage();
   }
-  print '<p>削除しました。</p>';
 }
 else
 {
-  echo "不正なリクエストです";
+  $err['token'] = '不正なリクエストです';
 }
+
+$smarty->assign('err', $err);
+
+if(isset($err['exception']) == '' && isset($err['token']) == '')
+{
+  $smarty->display('../smarty/templates/public/stock_delete_done.tpl');
+}
+else
+{
+  $smarty->display('../smarty/templates/err.tpl');
+}
+
 ?>
 
-<form action = "list.php">
-<input type = "submit" value = "在庫一覧へ">
-</form>
 
-</body>
-</html>

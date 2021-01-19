@@ -1,21 +1,21 @@
-<!DOCTYPE html>
-<html lang = "ja">
-<head>
-　<meta charset = "UTF-8">
-　<meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
-　<link rel = "stylesheet" href = "../public/css/common.css">
-　<title>ユーザー登録</title>
-</head>
-<body>
-
 <?php
 require_once('../db_connect/db_connect.php');
-require_once('../sanitize/sanitize.php');
-$post = sanitize($_POST);
+require('../../../Smarty-master/libs/Smarty.class.php');
+
+
+$smarty = new Smarty();
+
+$smarty->template_dir = dirname( __FILE__ , 3).'/templates';
+$smarty->compile_dir  = dirname( __FILE__ , 3).'/templates_c';
+$smarty->config_dir   = dirname( __FILE__ , 3).'/configs';
+$smarty->cache_dir    = dirname( __FILE__ , 3).'/cache';
+
+$smarty->escape_html  = true;
 
 $user_name = $_POST['name'];
 $user_email = $_POST['email'];
 $user_pass = $_POST['pass'];
+$err[] = '';
 
 try
 {
@@ -25,25 +25,25 @@ try
   $data[] = $user_email;
   $data[] = $user_pass;
   $stmt->execute($data);
-
   $dbh = null;
-
-  print $user_name;
-  print 'さんを登録しました。<br />';
-
 }
 catch (Exception $e)
 {
-	echo "エラー発生：" . htmlspecialchars($e->getMessage(),ENT_QUOTES, 'UTF-8') . "<br>";
-	print 'ただいま障害により大変ご迷惑をお掛けしております。';
-	exit();
+	$err['exception'] = $e->getMessage();
+}
+
+$smarty->assign('user_name', $user_name);
+$smarty->assign('err', $err);
+
+if(isset($err['exception']) == '')
+{
+  $smarty->display('../smarty/templates/user/user_add_done.tpl');
+}
+else
+{
+  $smarty->display('../smarty/templates/err.tpl');
 }
 
 ?>
 
-<form action = "../user_login/login_form.html">
-<input type = "submit" value = "ログイン画面へ">
-</form>
 
-</body>
-</html>

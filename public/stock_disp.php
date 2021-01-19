@@ -1,16 +1,22 @@
-<!DOCTYPE html>
-<html lang = "ja">
-<head>
-　<meta charset = "UTF-8">
-　<meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
-　<link rel = "stylesheet" href = "css/common.css">
-　<title>在庫参照</title>
-</head>
-<body>
-
 <?php
+require_once('../login_certification/certification.php');
+certification();
+
 require_once('../db_connect/db_connect.php');
-$stock_id = $_GET['stockid'];
+require('../../../Smarty-master/libs/Smarty.class.php');
+
+
+$smarty = new Smarty();
+
+$smarty->template_dir = dirname( __FILE__ , 3).'/templates';
+$smarty->compile_dir  = dirname( __FILE__ , 3).'/templates_c';
+$smarty->config_dir   = dirname( __FILE__ , 3).'/configs';
+$smarty->cache_dir    = dirname( __FILE__ , 3).'/cache';
+
+$smarty->escape_html  = true;
+
+$stock_id = $_GET['stock_id'];
+$err[] = '';
 
 try
 {
@@ -18,7 +24,6 @@ try
   $stmt = connect()->prepare($sql);
   $data[] = $stock_id;
   $stmt->execute($data);
-
   $rec = $stmt->fetch(PDO::FETCH_ASSOC);
   $stock_purchase_date = $rec['purchase_date'];
   $stock_deadline = $rec['deadline'];
@@ -29,22 +34,22 @@ try
 }
 catch(Exception $e)
 {
-	echo "エラー発生：" . htmlspecialchars($e->getMessage(),ENT_QUOTES, 'UTF-8') . "<br>";
-	print'ただいま障害により大変ご迷惑をお掛けしております。';
-	exit();
+  $err['exception'] = $e->getMessage();
+}
+
+$smarty->assign('stock_purchase_date', $stock_purchase_date);
+$smarty->assign('stock_deadline', $stock_deadline);
+$smarty->assign('stock_name', $stock_name);
+$smarty->assign('stock_price', $stock_price);
+$smarty->assign('stock_number', $stock_number);
+$smarty->assign('err', $err);
+
+if(isset($err['exception']) == '')
+{
+  $smarty->display('../smarty/templates/public/stock_disp.tpl');
+}
+else
+{
+  $smarty->display('../smarty/templates/err.tpl');
 }
 ?>
-
-<!--以下、テンプレエンジン化-->
-<p>購入日　：<?php print $stock_purchase_date; ?></p>
-<p>商品名　：<?php print $stock_name; ?></p>
-<p>値段　　：<?php print $stock_price; ?></p>
-<p>数量　　：<?php print $stock_number; ?></p>
-<p>消費期限：<?php print $stock_deadline; ?></p>
-
-<form>
-<input type = "button" onclick = "history.back()" value = "戻る">
-</form>
-
-</body>
-</html>

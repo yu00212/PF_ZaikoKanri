@@ -1,78 +1,89 @@
 <?php
 require_once('../login_certification/certification.php');
 certification();
-?>
 
-<!DOCTYPE html>
-<html lang = "ja">
-<head>
-　<meta charset = "UTF-8">
-　<meta name = "viewport" content = "width=device-width, initial-scale=1.0">
-　<link rel = "stylesheet" href = "css/common.css">
-　<title>在庫登録</title>
-</head>
-<body>
+require('../../../Smarty-master/libs/Smarty.class.php');
 
-<?php
-require_once('../sanitize/sanitize.php');
-$post = sanitize($_POST);
+
+$smarty = new Smarty();
+
+$smarty->template_dir = dirname( __FILE__ , 3).'/templates';
+$smarty->compile_dir  = dirname( __FILE__ , 3).'/templates_c';
+$smarty->config_dir   = dirname( __FILE__ , 3).'/configs';
+$smarty->cache_dir    = dirname( __FILE__ , 3).'/cache';
+
+$smarty->escape_html  = true;
 
 $stock_purchase_date = $_POST['purchase_date'];
 $stock_deadline = $_POST['deadline'];
 $stock_name = $_POST['stock_name'];
 $stock_price = $_POST['price'];
 $stock_number = $_POST['number'];
-?>　
+$err[] = '';
 
-<?php list($year, $month, $day) = explode("-", $stock_purchase_date); ?>
-<?php if(checkdate($month, $day, $year)) : ?>
-  <p>購入日　：<?php print $stock_purchase_date ?></p>
-<?php else : ?>
-  <p>購入日をきちんと入力してください。</p>
-<?php endif; ?>
+list($year, $month, $day) = explode("-", $stock_purchase_date);
+if(checkdate($month, $day, $year))
+{
+  $smarty->assign('stock_purchase_date', $stock_purchase_date);
+}
+else
+{
+  $err['purchase_date'] = '購入日をきちんと入力してください。';
+}
 
-<?php list($year, $month, $day) = explode("-", $stock_deadline); ?>
-<?php if(checkdate($month, $day, $year)) : ?>
-  <p>消費期限：<?php print $stock_deadline ?></p>
-<?php else : ?>
-  <p>消費期限をきちんと入力してください。</p>
-<?php endif; ?>
+list($year, $month, $day) = explode("-", $stock_deadline);
+if(checkdate($month, $day, $year))
+{
+  $smarty->assign('stock_deadline', $stock_deadline);
+}
+else
+{
+  $err['stock_deadline'] = '消費期限をきちんと入力してください。';
+}
 
-<?php if($stock_name == '') : ?>
-  <p>商品名をきちんと入力してください。</p>
-<?php else : ?>
-  <p>商品名　：<?php print $stock_name ?></p>
-<?php endif; ?>
+if($stock_name == '')
+{
+  $err['stock_name'] = '商品名が入力されていません。';
+}
+else
+{
+  $smarty->assign('stock_name', $stock_name);
+}
 
-<?php if(preg_match('/\A[0-9]+\z/',$stock_price) == 0) : ?>
-  <p>値段をきちんと入力してください。</p>
-<?php else : ?>
-  <p>値段　　：<?php print $stock_price ?></p>
-<?php endif; ?>
+if($stock_price == '')
+{
+  $err['stock_price'] = '値段が入力されていません。';
+}
+elseif(preg_match('/\A[0-9]+\z/',$stock_price) == 0)
+{
+  $err['stock_price'] = '値段は数字で入力してください。';
+}
+else
+{
+  $smarty->assign('stock_price', $stock_price);
+}
 
-<?php if(preg_match('/\A[0-9]+\z/',$stock_number) == 0) : ?>
-  <p>数量をきちんと入力してください。</p>
-<?php else : ?>
-  <p>数量　　：<?php print $stock_number ?></p>
-<?php endif; ?><br>
+if($stock_number == '')
+{
+  $err['stock_number'] = '数量が入力されていません。';
+}
+elseif(preg_match('/\A[0-9]+\z/',$stock_number) == 0)
+{
+  $err['stock_number'] = '数量は数字で入力してください。';
+}
+else
+{
+  $smarty->assign('stock_number', $stock_number);
+}
 
-<?php if($stock_purchase_date == false || $stock_deadline == false || $stock_name == '' || preg_match('/\A[0-9]+\z/',$stock_price) == 0 || preg_match('/\A[0-9]+\z/',$stock_number) == 0) : ?>
-  <form>
-  <input type = "button" onclick = "history.back()" value = "戻る">
-  </form>
-<?php else : ?>
-  <p>上記の商品を追加します。</p>
-  <p>問題なければOKを押してください。</p>
-  <form method = "post" action = "stock_register_done.php">
-  <input type = "hidden" name = "purchase_date" value = " <?php print $stock_purchase_date ?>">
-  <input type = "hidden" name = "deadline" value = "<?php print $stock_deadline ?>">
-  <input type = "hidden" name = "stock_name" value = "<?php print $stock_name ?>">
-  <input type = "hidden" name = "price" value = "<?php print $stock_price ?>">
-  <input type = "hidden" name = "number" value = "<?php print $stock_number ?>">
-  <input type = "button" onclick = "history.back()" value="戻る">
-  <input type = "submit" value = "ＯＫ">
-  </form>
-<?php endif; ?>
+$smarty->assign('err', $err);
 
-</body>
-</html>
+if(isset($err['purchase_date']) == '' && isset($err['stock_deadline']) == '' && isset($err['stock_name']) == '' && isset($err['stock_price']) == '' && isset($err['stock_number']) == '')
+{
+  $smarty->display('../smarty/templates/public/stock_register_check.tpl');
+}
+else
+{
+  $smarty->display('../smarty/templates/err.tpl');
+}
+?>

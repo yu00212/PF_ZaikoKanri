@@ -1,64 +1,44 @@
 <?php
 require_once('../login_certification/certification.php');
 certification();
-?>
-
-<!DOCTYPE html>
-<html lang = "ja">
-<head>
-　<meta charset = "UTF-8">
-　<meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
-　<link rel = "stylesheet" href = "../public/css/common.css">
-　<title>アカウント一覧</title>
-</head>
-<body>
-
-<?php
 
 require_once('../db_connect/db_connect.php');
+require('../../../Smarty-master/libs/Smarty.class.php');
+
+
+$smarty = new Smarty();
+
+$smarty->template_dir = dirname( __FILE__ , 3).'/templates';
+$smarty->compile_dir  = dirname( __FILE__ , 3).'/templates_c';
+$smarty->config_dir   = dirname( __FILE__ , 3).'/configs';
+$smarty->cache_dir    = dirname( __FILE__ , 3).'/cache';
+
+$smarty->escape_html  = true;
+
+$err[] = '';
 
 try
 {
   $sql = 'SELECT id,name FROM users WHERE 1';
   $stmt = connect()->prepare($sql);
   $stmt->execute();
-
   $dbh = null;
-
-  print 'アカウント一覧<br />';
-
-  print '<form method = "post" action = "user_branch.php">';
-
-  while(true)
-  {
-    $rec = $stmt->fetch(PDO::FETCH_ASSOC);
-    if($rec == false)
-    {
-      break;
-    }
-    print'<input type = "radio" name = "user_id" value = "'.$rec['id'].'">';
-    print $rec['name'];
-    print'<br />';
-  }
-
-  print'<input type = "submit" name = "disp" value = "参照">';
-  print'<input type = "submit" name = "add" value = "追加">';
-  print'<input type = "submit" name = "edit" value = "修正">';
-  print'<input type = "submit" name = "delete" value = "削除">';
-  print'</form>';
-
 }
 catch (Exception $e)
 {
-  echo "エラー発生：" . htmlspecialchars($e->getMessage(),ENT_QUOTES, 'UTF-8') . "<br>";
-	print 'ただいま障害により大変ご迷惑をお掛けしております。';
-	exit();
+  $err['exception'] = $e->getMessage();
 }
 
+$smarty->assign('user', $stmt);
+$smarty->assign('err', $err);
+
+if(isset($err['exception']) == '')
+{
+  $smarty->display('../smarty/templates/user/user_list.tpl');
+}
+else
+{
+  $smarty->display('../smarty/templates/err.tpl');
+}
 ?>
 
-<br>
-<input type = "button" onclick = "history.back()" value = "戻る">
-
-</body>
-</html>

@@ -1,21 +1,22 @@
 <?php
 require_once('../login_certification/certification.php');
 certification();
-?>
 
-<!DOCTYPE html>
-<html lang = "ja">
-<head>
-　<meta charset = "UTF-8">
-　<meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
-　<link rel = "stylesheet" href = "css/common.css">
-　<title>在庫削除</title>
-</head>
-<body>
-
-<?php
 require_once('../db_connect/db_connect.php');
-$stock_id = $_GET['stockid'];
+require('../../../Smarty-master/libs/Smarty.class.php');
+
+
+$smarty = new Smarty();
+
+$smarty->template_dir = dirname( __FILE__ , 3).'/templates';
+$smarty->compile_dir  = dirname( __FILE__ , 3).'/templates_c';
+$smarty->config_dir   = dirname( __FILE__ , 3).'/configs';
+$smarty->cache_dir    = dirname( __FILE__ , 3).'/cache';
+
+$smarty->escape_html  = true;
+
+$stock_id = $_GET['stock_id'];
+$err[] = '';
 
 try
 {
@@ -23,7 +24,6 @@ try
   $stmt = connect()->prepare($sql);
   $data[] = $stock_id;
   $stmt->execute($data);
-
   $rec = $stmt->fetch(PDO::FETCH_ASSOC);
   $stock_purchase_date = $rec['purchase_date'];
   $stock_deadline = $rec['deadline'];
@@ -34,45 +34,24 @@ try
 }
 catch(Exception $e)
 {
-	echo "エラー発生：" . htmlspecialchars($e->getMessage(),ENT_QUOTES, 'UTF-8') . "<br>";
-	print'ただいま障害により大変ご迷惑をお掛けしております。';
-	exit();
+  $err['exception'] = $e->getMessage();
+}
+
+$smarty->assign('stock_id', $stock_id);
+$smarty->assign('stock_purchase_date',  $stock_purchase_date);
+$smarty->assign('stock_deadline', $stock_deadline);
+$smarty->assign('stock_name', $stock_name);
+$smarty->assign('stock_price', $stock_price);
+$smarty->assign('stock_number', $stock_number);
+$smarty->assign('err', $err);
+
+if(isset($err['exception']) == '')
+{
+  $smarty->display('../smarty/templates/public/stock_edit.tpl');
+}
+else
+{
+  $smarty->display('../smarty/templates/err.tpl');
 }
 ?>
 
-<p>全ての項目を入力後、修正ボタンを押してください。</p>
-
-<form method = "post" action = "stock_edit_check.php">
-<input type = "hidden" name = "stockid" value = "<?php print $stock_id; ?>">
-
-<p>
-  <label for = "purchase_date">購入日：　</label>
-  <input type = "date" name = "purchase_date" value = "<?php print $stock_purchase_date; ?>"><br>
-</p>
-
-<p>
-  <label for = "deadline">消費期限：</label>
-  <input type = "date" name = "deadline" value = "<?php print $stock_deadline; ?>"><br>
-</p>
-
-<p>
-  <label for = "stock_name">商品名：　</label>
-  <input type = "text" name = "stock_name" style = "width:160px"  value = "<?php print $stock_name; ?>"><br>
-</p>
-
-<p>
-  <label for = "price">値段：　　</label>
-  <input type = "text" name = "price" style = "width:80px" value = "<?php print $stock_price; ?>"><br>
-</p>
-
-<p>
-  <label for = "number">在庫数：　</label>
-  <input type = "number" name = "number" style = "width:80px" value = "<?php print $stock_number; ?>"><br>
-</p>
-
-<input type = "button" onclick = "history.back()" value = "戻る">
-<input type = "submit"  value = "修正">
-</form>
-
-</body>
-</html>
