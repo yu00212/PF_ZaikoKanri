@@ -18,10 +18,10 @@ session_destroy();
 </head>
 <body>
 
-<h3>ログアウトしました。</h3>
-<form action = "./login_form.html">
-  <input type = "submit" value = "ログイン画面へ">
-</form>
+  <p>ログアウトしました。</p>
+  <form action = "./login_form.html">
+    <input type = "submit" value = "ログイン画面へ">
+  </form>
 
 </body>
 </html>

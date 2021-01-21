@@ -13,6 +13,5 @@
     <input type = "submit" value = "在庫一覧へ">
   </form>
 
-
 </body>
 </html>

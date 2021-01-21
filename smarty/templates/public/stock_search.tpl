@@ -29,9 +29,8 @@
     </table>
   {/if}
 
-
   <form>
-  <input type = "button" onclick = "history.back()" value = "戻る">
+    <input type = "button" onclick = "history.back()" value = "戻る">
   </form>
 
 </body>

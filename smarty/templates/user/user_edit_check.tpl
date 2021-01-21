@@ -15,12 +15,12 @@
   <p>※パスワードはセキュリティ対策で表示していません。</p>
   <p>問題なければOKを押してください。</p>
   <form method = "post" action = "user_edit_done.php">
-  <input type = "hidden" name = "user_id" value = "{$user_id}">
-	<input type = "hidden" name = "name" value = "{$user_name}">
-	<input type = "hidden" name = "email" value = "{$user_email}">
-	<input type = "hidden" name = "pass" value = "{$user_pass}">
-  <input type = "button" onclick = "history.back()" value = "戻る">
-	<input type = "submit" value = "ＯＫ">
+    <input type = "hidden" name = "user_id" value = "{$user_id}">
+    <input type = "hidden" name = "name" value = "{$user_name}">
+    <input type = "hidden" name = "email" value = "{$user_email}">
+    <input type = "hidden" name = "pass" value = "{$user_pass}">
+    <input type = "button" onclick = "history.back()" value = "戻る">
+    <input type = "submit" value = "ＯＫ">
 	</form>
 
 </body>

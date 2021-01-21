@@ -16,7 +16,7 @@
   <p>消費期限：{$stock_deadline}</p>
 
   <form>
-  <input type = "button" onclick = "history.back()" value = "戻る">
+    <input type = "button" onclick = "history.back()" value = "戻る">
   </form>
 
 </body>

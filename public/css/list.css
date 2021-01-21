@@ -1,17 +1,20 @@
-#menu-list {
+#menu-list
+{
 	position: relative;
   overflow: hidden; /* ulでリスト全体を右に50%移動している分幅が広がりスクロールバーが表示されるのを防ぐ */
   margin-bottom: 30px;
 }
- 
-#menu-list ul {
+
+#menu-list ul
+{
 	position: relative;
 	left: 50%; /* ulを右に50%移動 */
 	float: left;
 	margin-left: -5px;/* liのmarginの半分をネガティブマージン（しないと右にずれる） */
 }
- 
-#menu-list ul li {
+
+#menu-list ul li
+{
   position: relative;
   list-style: none;
 	left: -55%; /* 左に50%移動 */
@@ -20,7 +23,8 @@
   border: 2px solid #444;
 }
 
-#menu-list li a{
+#menu-list li a
+{
   display: block;
   font-size: 13px;
   height: 17px;
@@ -33,52 +37,66 @@
   width:110px;
 }
 
-#menu-list li a:hover{
+#menu-list li a:hover
+{
   background: rgb(174, 203, 206);
 }
 
-input.search { width: 110px; }
-input.number { width: 50px; }
+input.search
+{
+  width: 110px;
+}
+
+input.number
+{
+  width: 50px;
+}
 
 /*--- table css ---*/
-.sorttbl{
+.sorttbl
+{
   border-collapse: collapse;
   border-spacing: 0;
   width: 100%;
   display: table;
 }
 
-.radio-th {
+.radio-th
+{
   width: 10px;
 }
 
-.sorttbl tr {
+.sorttbl tr
+{
   display: table-row; /* tr要素のような表示に */
   vertical-align: inherit; /* 縦方向の揃え位置を継承 */
-  border-color: inherit; 
+  border-color: inherit;
   border-bottom: 2px solid #444;
   cursor: pointer; /* リンクカーソル */
 }
 
 .sorttbl th:first-child, /* 最初に現れる子要素にスタイルを適用する */
-.sorttbl td:first-child{
+.sorttbl td:first-child
+{
   padding-left: 16px;
-    
 }
 
 .sorttbl td,
-.sorttbl th{
+.sorttbl th
+{
   padding: 5px 3px;
   display: table-cell; /* テーブルの中身の枠をを再現 */
   text-align: center;
   vertical-align: top;/* vertical-align: top; 上端揃え*/
 }
 
-.sorttbl td {
+.sorttbl td
+{
   font-weight: bold;
 }
 
-.sorttbl th{
+.sorttbl th
+{
   color: #fff!important;
   background-color: #5acdb2!important;
 }

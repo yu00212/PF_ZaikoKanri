@@ -17,14 +17,14 @@
   <p>上記の内容で登録します。</p>
   <p>問題なければOKを押してください</p>
   <form method = "post" action = "stock_register_done.php">
-  <input type = "hidden" name = "stock_id" value = "{$stock_id}">
-  <input type = "hidden" name = "purchase_date" value = "{$stock_purchase_date}">
-  <input type = "hidden" name = "deadline" value = "{$stock_deadline}">
-  <input type = "hidden" name = "stock_name" value = "{$stock_name}">
-  <input type = "hidden" name = "price" value = "{$stock_price}">
-  <input type = "hidden" name = "number" value = "{$stock_number}">
-  <input type = "button" onclick = "history.back()" value = "戻る">
-  <input type = "submit" value = "ＯＫ">
+    <input type = "hidden" name = "stock_id" value = "{$stock_id}">
+    <input type = "hidden" name = "purchase_date" value = "{$stock_purchase_date}">
+    <input type = "hidden" name = "deadline" value = "{$stock_deadline}">
+    <input type = "hidden" name = "stock_name" value = "{$stock_name}">
+    <input type = "hidden" name = "price" value = "{$stock_price}">
+    <input type = "hidden" name = "number" value = "{$stock_number}">
+    <input type = "button" onclick = "history.back()" value = "戻る">
+    <input type = "submit" value = "ＯＫ">
   </form>
 
 </body>

@@ -1,10 +1,9 @@
 <?php
+
 require_once('../login_certification/certification.php');
 certification();
 
 require_once('../db_connect/db_connect.php');
-require('../../../Smarty-master/libs/Smarty.class.php');
-
 
 $smarty = new Smarty();
 
@@ -20,14 +19,14 @@ $err[] = '';
 
 try
 {
-$sql = 'SELECT name,email FROM users WHERE id = ?';
-$stmt = connect()->prepare($sql);
-$data[] = $user_id;
-$stmt->execute($data);
-$rec = $stmt->fetch(PDO::FETCH_ASSOC);
-$user_name = $rec['name'];
-$user_email = $rec['email'];
-$dbh = null;
+  $sql = 'SELECT name,email FROM users WHERE id = ?';
+  $stmt = connect()->prepare($sql);
+  $data[] = $user_id;
+  $stmt->execute($data);
+  $rec = $stmt->fetch(PDO::FETCH_ASSOC);
+  $user_name = $rec['name'];
+  $user_email = $rec['email'];
+  $dbh = null;
 }
 catch(Exception $e)
 {

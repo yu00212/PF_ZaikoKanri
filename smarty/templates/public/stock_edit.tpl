@@ -10,7 +10,6 @@
 <body>
 
   <p>全ての項目を入力後、修正ボタンを押してください。</p>
-
   <form method = "post" action = "stock_edit_check.php">
     <input type = "hidden" name = "stock_id" value = "{$stock_id}">
     <p>

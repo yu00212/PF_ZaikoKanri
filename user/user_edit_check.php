@@ -1,9 +1,9 @@
 <?php
+
 require_once('../login_certification/certification.php');
 certification();
 
 require('../../../Smarty-master/libs/Smarty.class.php');
-
 
 $smarty = new Smarty();
 
@@ -14,12 +14,12 @@ $smarty->cache_dir    = dirname( __FILE__ , 3).'/cache';
 
 $smarty->escape_html  = true;
 
-$err[] = '';
 $user_id = $_POST['user_id'];
 $user_name = $_POST['name'];
 $user_email = $_POST['email'];
 $user_pass = $_POST['pass'];
 $user_pass2 = $_POST['pass2'];
+$err[] = '';
 
 if($user_name == '')
 {

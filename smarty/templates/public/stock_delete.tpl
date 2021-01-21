@@ -16,15 +16,15 @@
 
   <p>上記の商品を削除してもよろしいでしょうか？</p>
   <form method = "post" action = "stock_delete_done.php">
-  <input type = "hidden" name = "token" value = "{$token}">
-  <input type = "hidden" name = "stock_id" value = "{$stock_id}">
-  <input type = "hidden" name = "purchase_date" value = "{$stock_purchase_date}">
-  <input type = "hidden" name = "deadline" value = "{$stock_deadline}">
-  <input type = "hidden" name = "stock_name" value = "{$stock_name}">
-  <input type = "hidden" name = "price" value = "{$stock_price}">
-  <input type = "hidden" name = "stock_number" value = "{$stock_number}">
-  <input type = "button" onclick = "history.back()" value = "戻る">
-  <input type = "submit" value = "ＯＫ">
+    <input type = "hidden" name = "token" value = "{$token}">
+    <input type = "hidden" name = "stock_id" value = "{$stock_id}">
+    <input type = "hidden" name = "purchase_date" value = "{$stock_purchase_date}">
+    <input type = "hidden" name = "deadline" value = "{$stock_deadline}">
+    <input type = "hidden" name = "stock_name" value = "{$stock_name}">
+    <input type = "hidden" name = "price" value = "{$stock_price}">
+    <input type = "hidden" name = "stock_number" value = "{$stock_number}">
+    <input type = "button" onclick = "history.back()" value = "戻る">
+    <input type = "submit" value = "ＯＫ">
   </form>
 
 </body>

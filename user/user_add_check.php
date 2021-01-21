@@ -1,6 +1,6 @@
 <?php
-require('../../../Smarty-master/libs/Smarty.class.php');
 
+require('../../../Smarty-master/libs/Smarty.class.php');
 
 $smarty = new Smarty();
 
@@ -17,6 +17,7 @@ $user_pass = $_POST['pass'];
 $user_pass2 = $_POST['pass2'];
 
 $err[] = '';
+
 if($user_name == '')
 {
   $err['name'] = '名前が入力されていません。';
@@ -59,4 +60,5 @@ else
 {
   $smarty->display('../smarty/templates/err.tpl');
 }
+
 ?>
