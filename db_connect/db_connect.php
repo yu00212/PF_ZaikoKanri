@@ -1,8 +1,20 @@
 <?php
 
+require('../../../Smarty-master/libs/Smarty.class.php');
+
+$smarty = new Smarty();
+
+$smarty->template_dir = dirname( __FILE__ , 3).'/templates';
+$smarty->compile_dir  = dirname( __FILE__ , 3).'/templates_c';
+$smarty->config_dir   = dirname( __FILE__ , 3).'/configs';
+$smarty->cache_dir    = dirname( __FILE__ , 3).'/cache';
+
+$smarty->escape_html  = true;
+
+$err[] = '';
+
 function connect()
 {
-
   try
   {
     $dsn = 'mysql:dbname=user;host=localhost;charset=utf8';
@@ -14,10 +26,16 @@ function connect()
   }
   catch(PDOExeption $e)
   {
-    echo '接続失敗です。'.$e->getMessage();
+    $err['exception'] = $e->getMessage();
     exit();
   }
+}
 
+$smarty->assign('err', $err);
+
+if(isset($err['exception']))
+{
+  $smarty->display('../smarty/templates/err.tpl');
 }
 
 ?>
