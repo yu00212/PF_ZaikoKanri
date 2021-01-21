@@ -1,10 +1,9 @@
 <?php
+
 require_once('../login_certification/certification.php');
 certification();
 
 require_once('../db_connect/db_connect.php');
-require('../../../Smarty-master/libs/Smarty.class.php');
-
 
 $smarty = new Smarty();
 
@@ -20,11 +19,11 @@ $err[] = '';
 
 try
 {
-$sql = 'DELETE FROM users WHERE id = ?';
-$stmt = connect()->prepare($sql);
-$data[] = $user_id;
-$stmt->execute($data);
-$dbh = null;
+  $sql = 'DELETE FROM users WHERE id = ?';
+  $stmt = connect()->prepare($sql);
+  $data[] = $user_id;
+  $stmt->execute($data);
+  $dbh = null;
 }
 catch (Exception $e)
 {
@@ -41,4 +40,5 @@ else
 {
   $smarty->display('../smarty/templates/err.tpl');
 }
+
 ?>

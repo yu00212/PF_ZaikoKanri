@@ -1,7 +1,6 @@
 <?php
-require_once('../db_connect/db_connect.php');
-require('../../../Smarty-master/libs/Smarty.class.php');
 
+require_once('../db_connect/db_connect.php');
 
 $smarty = new Smarty();
 
@@ -37,7 +36,6 @@ if(isset($user_pass))
 
 try
 {
-  //throw new Exception('exception!!');
   $sql = 'SELECT name FROM users WHERE email = ? AND password = ?';
   $stmt = connect()->prepare($sql);
   $data[] = $user_email;
@@ -69,5 +67,6 @@ catch(Exception $e)
 
 $smarty->assign('err', $err);
 $smarty->display('../smarty/templates/err.tpl');
+
 ?>
 

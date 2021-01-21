@@ -1,7 +1,6 @@
 <?php
-require_once('../db_connect/db_connect.php');
-require('../../../Smarty-master/libs/Smarty.class.php');
 
+require_once('../db_connect/db_connect.php');
 
 $smarty = new Smarty();
 

@@ -1,10 +1,9 @@
 <?php
+
 require_once('../login_certification/certification.php');
 certification();
 
 require_once('../db_connect/db_connect.php');
-require('../../../Smarty-master/libs/Smarty.class.php');
-
 
 $smarty = new Smarty();
 
@@ -50,4 +49,5 @@ else
 {
   $smarty->display('../smarty/templates/err.tpl');
 }
+
 ?>
