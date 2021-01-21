@@ -1,21 +1,27 @@
 <?php
+
 require_once('../login_certification/certification.php');
 certification();
+
+require('../../../Smarty-master/libs/Smarty.class.php');
+
+$smarty = new Smarty();
+
+$smarty->template_dir = dirname( __FILE__ , 3).'/templates';
+$smarty->compile_dir  = dirname( __FILE__ , 3).'/templates_c';
+$smarty->config_dir   = dirname( __FILE__ , 3).'/configs';
+$smarty->cache_dir    = dirname( __FILE__ , 3).'/cache';
+
+$smarty->escape_html  = true;
+
+$err[] = '';
+$err['select'] = '商品が選択されていません。';
+
+$smarty->assign('err', $err);
+
+if(isset($err['select']))
+{
+  $smarty->display('../smarty/templates/err.tpl');
+}
+
 ?>
-
-<!DOCTYPE html>
-<html lang = "ja">
-<head>
-  <meta charset = "UTF-8">
-  <meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
-  <link rel = "stylesheet" href = "css/common.css">
-  <title>在庫管理</title>
-</head>
-<body>
-
-<p>商品が選択・入力されていません。</p>
-<form action = "list.php">
-  <input type = "submit" value = "戻る">
-</form>
-
-</body>
