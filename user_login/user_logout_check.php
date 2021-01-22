@@ -15,8 +15,8 @@ certification();
 
   <p>ログアウトしますか？</p>
   <form action = "user_logout.php">
-  <input type = "button" onclick = "history.back()" value = "戻る">
-  <input type = "submit" value = "はい">
+    <input type = "button" onclick = "history.back()" value = "戻る">
+    <input type = "submit" value = "はい">
   </form>
 
 </body>

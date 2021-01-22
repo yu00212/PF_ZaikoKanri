@@ -17,8 +17,7 @@ if(isset($_POST['disp']) == true)
 
 if(isset($_POST['add']) == true)
 {
-  header('Location:user_add.html
-');
+  header('Location:user_add.html');
   exit();
 }
 
