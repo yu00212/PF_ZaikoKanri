@@ -29,12 +29,12 @@
 
   <table class = "sorttbl" id = "myTable" border = "2">
     <tr>
-      <th class = "radio-th"></th>
-      <th class = "purchase_date-th">購入日</th>
-      <th class = "stock_name-th">商品</th>
-      <th class = "price-th">値段</th>
-      <th class = "number-th">数量</th>
-      <th class = "deadline-th" onclick = "w3.sortHTML('#myTable','.item', 'td:nth-child(6)')">消費期限&nbsp;<i class = "fa fa-sort"></i></th>
+      <th></th>
+      <th>購入日</th>
+      <th>商品</th>
+      <th>値段</th>
+      <th>数量</th>
+      <th onclick = "w3.sortHTML('#myTable','.item', 'td:nth-child(6)')">消費期限&nbsp;<i class = "fa fa-sort"></i></th>
     </tr>
 
     {foreach $stock as $s}
