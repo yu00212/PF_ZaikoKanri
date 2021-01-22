@@ -39,7 +39,7 @@
 
     {foreach $stock as $s}
       <tr class = "item">
-        <td><input type = "radio" name = "stock_id" value = "{$s[0]}"></td>
+        <td><label><input type = "radio" name = "stock_id" value = "{$s[0]}"></label></td>
         <td>{$s[1]}</td>
         <td>{$s[3]}</td>
         <td>¥{$s[4]}</td>
