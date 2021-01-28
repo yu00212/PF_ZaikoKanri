@@ -44,5 +44,3 @@ if(isset($_POST['delete']) == true)
   header('Location:user_delete.php?user_id='.$user_id);
   exit();
 }
-
-?>

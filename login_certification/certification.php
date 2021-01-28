@@ -17,5 +17,3 @@ function certification()
     print'<br />';
   }
 }
-
-?>

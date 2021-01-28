@@ -56,5 +56,3 @@ if(isset($_POST['search_name']) == true)
   header('Location:stock_search.php?search_name='.$search_name);
   exit();
 }
-
-?>

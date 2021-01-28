@@ -23,5 +23,3 @@ if(isset($err['select']))
 {
   $smarty->display('../smarty/templates/err.tpl');
 }
-
-?>

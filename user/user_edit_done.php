@@ -64,5 +64,3 @@ else
   $smarty->display('../smarty/templates/err.tpl');
 }
 
-?>
-

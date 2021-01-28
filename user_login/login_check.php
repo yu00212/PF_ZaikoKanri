@@ -68,5 +68,3 @@ catch(Exception $e)
 $smarty->assign('err', $err);
 $smarty->display('../smarty/templates/err.tpl');
 
-?>
-

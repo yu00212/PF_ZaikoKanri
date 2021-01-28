@@ -37,5 +37,3 @@ if(isset($err['exception']))
 {
   $smarty->display('../smarty/templates/err.tpl');
 }
-
-?>
