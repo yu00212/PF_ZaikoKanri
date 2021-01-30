@@ -1,18 +1,9 @@
 <?php
 
-require_once('../login_certification/certification.php');
+require_once '../login_certification/certification.php';
 certification();
 
-require_once('../db_connect/db_connect.php');
-
-$smarty = new Smarty();
-
-$smarty->template_dir = dirname( __FILE__ , 3).'/templates';
-$smarty->compile_dir  = dirname( __FILE__ , 3).'/templates_c';
-$smarty->config_dir   = dirname( __FILE__ , 3).'/configs';
-$smarty->cache_dir    = dirname( __FILE__ , 3).'/cache';
-
-$smarty->escape_html  = true;
+require_once '../db_connect/db_connect.php';
 
 $stock_id = $_GET['stock_id'];
 $err[] = '';
@@ -25,21 +16,19 @@ $_SESSION['token'] = $token;
 
 try
 {
-  $sql = 'SELECT stock_id,purchase_date,deadline,stock_name,price,number FROM stocks WHERE stock_id = ?';
-  $stmt = connect()->prepare($sql);
-  $data[] = $stock_id;
-  $stmt->execute($data);
-  $rec = $stmt->fetch(PDO::FETCH_ASSOC);
-  $stock_purchase_date = $rec['purchase_date'];
-  $stock_deadline = $rec['deadline'];
-  $stock_name = $rec['stock_name'];
-  $stock_price = $rec['price'];
-  $stock_number = $rec['number'];
-  $dbh = null;
-}
-catch(Exception $e)
-{
-  $err['exception'] = $e->getMessage();
+    $sql = 'SELECT stock_id,purchase_date,deadline,stock_name,price,number FROM stocks WHERE stock_id = ?';
+    $stmt = connect()->prepare($sql);
+    $data[] = $stock_id;
+    $stmt->execute($data);
+    $rec = $stmt->fetch(PDO::FETCH_ASSOC);
+    $stock_purchase_date = $rec['purchase_date'];
+    $stock_deadline = $rec['deadline'];
+    $stock_name = $rec['stock_name'];
+    $stock_price = $rec['price'];
+    $stock_number = $rec['number'];
+    $dbh = null;
+} catch (Exception $e) {
+    $err['exception'] = $e->getMessage();
 }
 
 $smarty->assign('token', $token);
@@ -51,11 +40,8 @@ $smarty->assign('stock_price', $stock_price);
 $smarty->assign('stock_number', $stock_number);
 $smarty->assign('err', $err);
 
-if(isset($err['exception']) == '')
-{
-  $smarty->display('../smarty/templates/public/stock_delete.tpl');
-}
-else
-{
-  $smarty->display('../smarty/templates/err.tpl');
+if (isset($err['exception']) == '') {
+    $smarty->display('../smarty/templates/public/stock_delete.tpl');
+} else {
+    $smarty->display('../smarty/templates/err.tpl');
 }
