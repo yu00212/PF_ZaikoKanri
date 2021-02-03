@@ -30,7 +30,7 @@ try
 $smarty->assign('stock_name', $stock_name);
 $smarty->assign('err', $err);
 
-if (isset($err['exception']) == '') {
+if (isset($err['exception']) == false) {
     $smarty->display('../smarty/templates/public/stock_register_done.tpl');
 } else {
     $smarty->display('../smarty/templates/err.tpl');

@@ -40,7 +40,7 @@ try
 
 $smarty->assign('err', $err);
 
-if (isset($err['exception']) == '') {
+if (isset($err['exception']) == false) {
     $smarty->display('../smarty/templates/user/user_edit_done.tpl');
 } else {
     $smarty->display('../smarty/templates/err.tpl');

@@ -28,7 +28,7 @@ $smarty->assign('token', $token);
 $smarty->assign('stock_data', $stock_data);
 $smarty->assign('err', $err);
 
-if (isset($err['exception']) == '') {
+if (isset($err['exception']) == false) {
     $smarty->display('../smarty/templates/public/stock_delete.tpl');
 } else {
     $smarty->display('../smarty/templates/err.tpl');

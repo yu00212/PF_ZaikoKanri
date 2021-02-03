@@ -24,7 +24,7 @@ if (isset($_POST["token"]) && $_POST["token"] === $_SESSION['token']) {
 
 $smarty->assign('err', $err);
 
-if (isset($err['exception']) == '' && isset($err['token']) == '') {
+if (isset($err['exception']) == false && isset($err['token']) == '') {
     $smarty->display('../smarty/templates/public/stock_delete_done.tpl');
 } else {
     $smarty->display('../smarty/templates/err.tpl');

@@ -20,7 +20,7 @@ try
 $smarty->assign('stock', $stmt);
 $smarty->assign('err', $err);
 
-if (isset($err['exception']) == '') {
+if (isset($err['exception']) == false) {
     $smarty->display('../smarty/templates/public/list.tpl');
 } else {
     $smarty->display('../smarty/templates/err.tpl');
