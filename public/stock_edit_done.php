@@ -4,66 +4,38 @@ require_once '../login_certification/certification.php';
 certification();
 
 require_once '../db_connect/db_connect.php';
-
-$stock_id = $_POST['stock_id'];
-$stock_purchase_date = $_POST['purchase_date'];
-$stock_deadline = $_POST['deadline'];
-$stock_name = $_POST['stock_name'];
-$stock_price = $_POST['price'];
-$stock_number = $_POST['number'];
-$err[] = '';
+require_once '../common/input_check.php';
 
 try
 {
-    if (!empty($_POST['stock_id'])) {
-        $stock_id = $_POST['stock_id'];
-    }
 
-    if (!empty($_POST['purchase_date'])) {
-        $stock_purchase_date = $_POST['purchase_date'];
-    }
-
-    if (!empty($_POST['deadline'])) {
-        $stock_deadline = $_POST['deadline'];
-    }
-
-    if (!empty($_POST['stock_name'])) {
-        $stock_name = $_POST['stock_name'];
-    }
-
-    if (!empty($_POST['price'])) {
-        $stock_price = $_POST['price'];
-    }
-
-    if (!empty($_POST['number'])) {
-        $stock_number = $_POST['number'];
-    }
+    list($stock_data, $err) = validateStock($post);
 
     $sql = 'UPDATE stocks SET purchase_date = :purchase_date,deadline = :deadline,stock_name = :stock_name,price = :price,number = :number WHERE stock_id = :stock_id';
     $stmt = connect()->prepare($sql);
 
-    if (isset($stock_id)) {
-        $data[':stock_id'] = (int) $stock_id;
+    if (isset($stock_data['stock_id'])) {
+        $data[':stock_id'] = (int) $stock_data['stock_id'];
     }
 
-    if (isset($stock_purchase_date)) {
-        $data[':purchase_date'] = $stock_purchase_date;
+    if (isset($stock_data['purchase_date'])) {
+        $data[':purchase_date'] = $stock_data['purchase_date'];
     }
 
-    if (isset($stock_deadline)) {
-        $data[':deadline'] = $stock_deadline;
+    if (isset($stock_data['deadline'])) {
+        $data[':deadline'] = $stock_data['deadline'];
     }
 
-    if (isset($stock_name)) {
-        $data[':stock_name'] = $stock_name;
+    if (isset($stock_data['stock_name'])) {
+        $data[':stock_name'] = $stock_data['stock_name'];
     }
 
-    if (isset($stock_price)) {
-        $data[':price'] = (int) $stock_price;
+    if (isset($stock_data['price'])) {
+        $data[':price'] = (int) $stock_data['price'];
     }
 
-    if (isset($stock_number)) {
-        $data[':number'] = (int) $stock_number;
+    if (isset($stock_data['number'])) {
+        $data[':number'] = (int) $stock_data['number'];
     }
 
     $stmt->execute($data);
@@ -74,7 +46,7 @@ try
 
 $smarty->assign('err', $err);
 
-if (isset($err['exception']) == false) {
+if (isset($err['purchase_date']) == false && isset($err['stock_deadline']) == false && isset($err['stock_name']) == false && isset($err['stock_price']) == false && isset($err['stock_number']) == false && isset($err['exception']) == false) {
     $smarty->display('../smarty/templates/public/stock_edit_done.tpl');
 } else {
     $smarty->display('../smarty/templates/err.tpl');
