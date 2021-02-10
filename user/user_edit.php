@@ -19,6 +19,7 @@ try
     $err['exception'] = $e->getMessage();
 }
 
+$smarty->assign('user_id', $user_id);
 $smarty->assign('user_data', $user_data);
 $smarty->assign('err', $err);
 
