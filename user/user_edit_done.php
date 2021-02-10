@@ -4,15 +4,12 @@ require_once '../login_certification/certification.php';
 certification();
 
 require_once '../db_connect/db_connect.php';
-
-$user_data['user_id'] = $_POST['user_id'];
-$user_data['name'] = $_POST['name'];
-$user_data['email'] = $_POST['email'];
-$user_data['pass'] = $_POST['pass'];
-$err[] = '';
+require_once '../common/input_check.php';
 
 try
 {
+    list($user_data, $err) = validateUser($post);
+
     $sql = 'UPDATE users SET name = :name, email = :email, password = :pass WHERE id = :user_id';
     $stmt = connect()->prepare($sql);
 
@@ -38,10 +35,9 @@ try
     $err['exception'] = $e->getMessage();
 }
 
-$smarty->assign('user_data', $user_data);
 $smarty->assign('err', $err);
 
-if (isset($err['exception']) == false) {
+if (isset($err['name']) == false && isset($err['email']) == false && isset($err['pass']) == false && isset($err['pass2']) == false && isset($err['exception']) == false) {
     $smarty->display('../smarty/templates/user/user_edit_done.tpl');
 } else {
     $smarty->display('../smarty/templates/err.tpl');
