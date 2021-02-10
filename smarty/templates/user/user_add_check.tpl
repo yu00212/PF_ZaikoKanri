@@ -19,6 +19,7 @@
         <input type="hidden" name="name" value="{$user_data['name']}">
         <input type="hidden" name="email" value="{$user_data['email']}">
         <input type="hidden" name="pass" value="{$user_data['pass']}">
+        <input type="hidden" name="pass2" value="{$user_data['pass2']}">
         <input type="button" onclick="history.back()" value="戻る">
         <input type="submit" value="ＯＫ">
     </form>
