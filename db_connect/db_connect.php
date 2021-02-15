@@ -1,6 +1,7 @@
 <?php
 
 require_once '../common/smarty.php';
+require_once '../common/common.php';
 
 $err[] = '';
 
@@ -15,13 +16,6 @@ function connect()
         $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         return $dbh;
     } catch (PDOExeption $e) {
-        $err['exception'] = $e->getMessage();
-        exit();
+        err_common($e, $smarty);
     }
-}
-
-$smarty->assign('err', $err);
-
-if (isset($err['exception'])) {
-    $smarty->display('../smarty/templates/err.tpl');
 }

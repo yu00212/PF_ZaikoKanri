@@ -4,6 +4,7 @@ require_once '../login_certification/certification.php';
 certification();
 
 require_once '../db_connect/db_connect.php';
+require_once '../common/common.php';
 
 $err[] = '';
 
@@ -14,14 +15,8 @@ try
     $stmt->execute();
     $dbh = null;
 } catch (Exception $e) {
-    $err['exception'] = $e->getMessage();
+    err_common($e, $smarty);
 }
 
 $smarty->assign('user', $stmt);
-$smarty->assign('err', $err);
-
-if (isset($err['exception']) == false) {
-    $smarty->display('../smarty/templates/user/user_list.tpl');
-} else {
-    $smarty->display('../smarty/templates/err.tpl');
-}
+$smarty->display('../smarty/templates/user/user_list.tpl');

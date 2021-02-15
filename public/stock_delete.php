@@ -5,6 +5,7 @@ certification();
 
 require_once '../db_connect/db_connect.php';
 require_once '../common/get_data.php';
+require_once '../common/common.php';
 
 $stock_id = $_GET['stock_id'];
 $err[] = '';
@@ -21,15 +22,9 @@ try
     $stock_data = getStockById($stock_id);
     $dbh = null;
 } catch (Exception $e) {
-    $err['exception'] = $e->getMessage();
+    err_common($e, $smarty);
 }
 
 $smarty->assign('token', $token);
 $smarty->assign('stock_data', $stock_data);
-$smarty->assign('err', $err);
-
-if (isset($err['exception']) == false) {
-    $smarty->display('../smarty/templates/public/stock_delete.tpl');
-} else {
-    $smarty->display('../smarty/templates/err.tpl');
-}
+$smarty->display('../smarty/templates/public/stock_delete.tpl');

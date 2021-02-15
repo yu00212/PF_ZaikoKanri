@@ -5,11 +5,12 @@ certification();
 
 require_once '../db_connect/db_connect.php';
 require_once '../common/input_check.php';
+require_once '../common/common.php';
 
 try
 {
 
-    list($stock_data, $err) = validateStock($post);
+    $stock_data = validateStock($post, $smarty);
 
     $sql = 'UPDATE stocks SET purchase_date = :purchase_date,deadline = :deadline,stock_name = :stock_name,price = :price,number = :number WHERE stock_id = :stock_id';
     $stmt = connect()->prepare($sql);
@@ -41,13 +42,7 @@ try
     $stmt->execute($data);
     $dbh = null;
 } catch (Exception $e) {
-    $err['exception'] = $e->getMessage();
+    err_common($e, $smarty);
 }
 
-$smarty->assign('err', $err);
-
-if (isset($err['purchase_date']) == false && isset($err['stock_deadline']) == false && isset($err['stock_name']) == false && isset($err['stock_price']) == false && isset($err['stock_number']) == false && isset($err['exception']) == false) {
-    $smarty->display('../smarty/templates/public/stock_edit_done.tpl');
-} else {
-    $smarty->display('../smarty/templates/err.tpl');
-}
+$smarty->display('../smarty/templates/public/stock_edit_done.tpl');

@@ -2,7 +2,7 @@
 
 $post = $_POST;
 
-function validateStock($post)
+function validateStock($post, $smarty)
 {
     $err[] = '';
     $stock_data[] = '';
@@ -59,10 +59,15 @@ function validateStock($post)
         $stock_data['number'] = $_POST['number'];
     }
 
-    return array($stock_data, $err);
+    $smarty->assign('err', $err);
+    if (isset($err)) {
+        $smarty->display('../smarty/templates/err.tpl');
+    }
+
+    return array($stock_data);
 }
 
-function validateUser($post)
+function validateUser($post, $smarty)
 {
     $err[] = '';
     $user_data[] = '';
@@ -103,5 +108,10 @@ function validateUser($post)
         $user_data['pass2'] = $_POST['pass2'];
     }
 
-    return array($user_data, $err);
+    $smarty->assign('err', $err);
+    if (isset($err)) {
+        $smarty->display('../smarty/templates/err.tpl');
+    }
+
+    return array($user_data);
 }

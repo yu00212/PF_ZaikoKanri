@@ -1,6 +1,7 @@
 <?php
 
 require_once '../db_connect/db_connect.php';
+require_once '../common/common.php';
 
 $reg_str = "/\A[a-z\d]{6,50}+\z/i";
 
@@ -46,8 +47,10 @@ try
     }
 
 } catch (Exception $e) {
-    $err['exception'] = $e->getMessage();
+    err_common($e, $smarty);
 }
 
 $smarty->assign('err', $err);
-$smarty->display('../smarty/templates/err.tpl');
+if (isset($err)) {
+    $smarty->display('../smarty/templates/err.tpl');
+}

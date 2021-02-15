@@ -5,6 +5,7 @@ certification();
 
 require_once '../db_connect/db_connect.php';
 require_once '../common/get_data.php';
+require_once '../common/common.php';
 
 $user_id = $_GET['user_id'];
 $err[] = '';
@@ -16,15 +17,9 @@ try
     $user_data = getUserByID($sql, $user_id);
     $dbh = null;
 } catch (Exception $e) {
-    $err['exception'] = $e->getMessage();
+    err_common($e, $smarty);
 }
 
 $smarty->assign('user_id', $user_id);
 $smarty->assign('user_data', $user_data);
-$smarty->assign('err', $err);
-
-if (isset($err['exception']) == false) {
-    $smarty->display('../smarty/templates/user/user_edit.tpl');
-} else {
-    $smarty->display('../smarty/templates/err.tpl');
-}
+$smarty->display('../smarty/templates/user/user_edit.tpl');

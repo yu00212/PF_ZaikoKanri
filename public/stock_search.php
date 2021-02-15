@@ -4,6 +4,7 @@ require_once '../login_certification/certification.php';
 certification();
 
 require_once '../db_connect/db_connect.php';
+require_once '../common/common.php';
 
 $err[] = '';
 
@@ -43,7 +44,7 @@ try
         }
     }
 } catch (PDOException $e) {
-    $err['exception'] = $e->getMessage();
+    err_common($e, $smarty);
 }
 
 unset($_SESSION['POST']);
