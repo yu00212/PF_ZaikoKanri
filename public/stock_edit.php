@@ -10,8 +10,7 @@ require_once '../common/common.php';
 $stock_id = $_GET['stock_id'];
 $err[] = '';
 
-try
-{
+try {
     getStockById($stock_id);
     $stock_data = getStockById($stock_id);
     $dbh = null;
@@ -19,5 +18,6 @@ try
     err_common($e, $smarty);
 }
 
+$smarty->assign('title', "在庫修正");
 $smarty->assign('stock_data', $stock_data);
 $smarty->display('../smarty/templates/public/stock_edit.tpl');

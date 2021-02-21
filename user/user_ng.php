@@ -8,8 +8,7 @@ require_once '../common/smarty.php';
 $err[] = '';
 $err['select'] = 'ユーザーが選択されていません。';
 
-$smarty->assign('err', $err);
-
 if (isset($err['select'])) {
+	$smarty->assign('err', $err);
     $smarty->display('../smarty/templates/err.tpl');
 }

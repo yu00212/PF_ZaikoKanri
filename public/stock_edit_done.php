@@ -7,8 +7,7 @@ require_once '../db_connect/db_connect.php';
 require_once '../common/input_check.php';
 require_once '../common/common.php';
 
-try
-{
+try {
 
     $stock_data = validateStock($post, $smarty);
 
@@ -45,4 +44,5 @@ try
     err_common($e, $smarty);
 }
 
+$smarty->assign('title', "在庫修正");
 $smarty->display('../smarty/templates/public/stock_edit_done.tpl');

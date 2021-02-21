@@ -1,16 +1,13 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang = "ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel = "stylesheet" href = "../public/css/common.css">
-  <title>ユーザー編集</title>
+{include file = "../head.tpl" title=$title}
 </head>
 <body>
 
 <p>修正しました。</p>
 <form action = "user_list.php">
-  <input type = "submit" value = "アカウント一覧へ">
+	<input type = "submit" value = "アカウント一覧へ">
 </form>
 
 </body>

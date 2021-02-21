@@ -10,8 +10,7 @@ require_once '../common/common.php';
 $user_id = $_GET['user_id'];
 $err[] = '';
 
-try
-{
+try {
     $sql = 'SELECT name,email FROM users WHERE id = ?';
     getUserByID($sql, $user_id);
     $user_data = getUserByID($sql, $user_id);
@@ -20,6 +19,7 @@ try
     err_common($e, $smarty);
 }
 
+$smarty->assign('title', "ユーザー編集");
 $smarty->assign('user_id', $user_id);
 $smarty->assign('user_data', $user_data);
 $smarty->display('../smarty/templates/user/user_edit.tpl');

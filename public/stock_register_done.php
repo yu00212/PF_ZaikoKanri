@@ -7,8 +7,7 @@ require_once '../db_connect/db_connect.php';
 require_once '../common/input_check.php';
 require_once '../common/common.php';
 
-try
-{
+try {
     $stock_data = validateStock($post, $smarty);
     $sql = 'INSERT INTO stocks(purchase_date,deadline,stock_name,price,number) VALUES (?,?,?,?,?)';
     $stmt = connect()->prepare($sql);
@@ -23,5 +22,6 @@ try
     err_common($e, $smarty);
 }
 
+$smarty->assign('title', "在庫登録");
 $smarty->assign('stock_data', $stock_data);
 $smarty->display('../smarty/templates/public/stock_register_done.tpl');

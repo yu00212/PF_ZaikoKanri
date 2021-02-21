@@ -16,8 +16,7 @@ $token = bin2hex($toke_byte);
 // 生成したトークンをセッションに保存
 $_SESSION['token'] = $token;
 
-try
-{
+try {
     getStockById($stock_id);
     $stock_data = getStockById($stock_id);
     $dbh = null;
@@ -25,6 +24,7 @@ try
     err_common($e, $smarty);
 }
 
+$smarty->assign('title', "在庫削除");
 $smarty->assign('token', $token);
 $smarty->assign('stock_data', $stock_data);
 $smarty->display('../smarty/templates/public/stock_delete.tpl');

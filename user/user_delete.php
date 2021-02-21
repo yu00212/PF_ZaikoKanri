@@ -10,8 +10,7 @@ require_once '../common/common.php';
 $user_id = $_GET['user_id'];
 $err[] = '';
 
-try
-{
+try {
     $sql = 'SELECT id,name,email FROM users WHERE id = ?';
     getUserByID($sql, $user_id);
     $user_data = getUserByID($sql, $user_id);
@@ -20,5 +19,6 @@ try
     err_common($e, $smarty);
 }
 
+$smarty->assign('title', "ユーザー削除");
 $smarty->assign('user_data', $user_data);
 $smarty->display('../smarty/templates/user/user_delete.tpl');

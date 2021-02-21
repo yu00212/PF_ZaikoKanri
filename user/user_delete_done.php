@@ -9,8 +9,7 @@ require_once '../common/common.php';
 $user_id = $_POST['user_id'];
 $err[] = '';
 
-try
-{
+try {
     $sql = 'DELETE FROM users WHERE id = ?';
     $stmt = connect()->prepare($sql);
     $data[] = $user_id;
@@ -20,4 +19,5 @@ try
     err_common($e, $smarty);
 }
 
+$smarty->assign('title', "ユーザー削除");
 $smarty->display('../smarty/templates/user/user_delete_done.tpl');

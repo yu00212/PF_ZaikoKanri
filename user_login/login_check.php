@@ -21,8 +21,7 @@ if ($_POST['pass'] == '') {
     $user_pass = $_POST['pass'];
 }
 
-try
-{
+try {
     $sql = 'SELECT * FROM users WHERE email = ?';
     $stmt = connect()->prepare($sql);
     $data[] = $user_email;
@@ -50,7 +49,8 @@ try
     err_common($e, $smarty);
 }
 
-$smarty->assign('err', $err);
-if (isset($err)) {
+if (isset($err['email']) == true || isset($err['pass']) == true || isset($err['mis']) == true) {
+    $smarty->assign('title', "エラー");
+    $smarty->assign('err', $err);
     $smarty->display('../smarty/templates/err.tpl');
 }

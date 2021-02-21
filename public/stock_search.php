@@ -48,10 +48,12 @@ try
 }
 
 unset($_SESSION['POST']);
-$smarty->assign('err', $err);
 
 if (isset($row_count) == true) {
+	$smarty->assign('title', "在庫検索");
     $smarty->display('../smarty/templates/public/stock_search.tpl');
 } else {
+	$smarty->assign('title', "エラー");
+	$smarty->assign('err', $err);
     $smarty->display('../smarty/templates/err.tpl');
 }

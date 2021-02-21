@@ -4,8 +4,7 @@ require_once '../db_connect/db_connect.php';
 require_once '../common/input_check.php';
 require_once '../common/common.php';
 
-try
-{
+try {
     $user_data = validateUser($post, $smarty);
     $user_data['pass'] = password_hash($user_data['pass'], PASSWORD_DEFAULT);
     $sql = 'INSERT INTO users (name,email,password) VALUES (?,?,?)';
@@ -19,5 +18,6 @@ try
     err_common($e, $smarty);
 }
 
+$smarty->assign('title', "ユーザー登録");
 $smarty->assign('user_data', $user_data);
 $smarty->display('../smarty/templates/user/user_add_done.tpl');

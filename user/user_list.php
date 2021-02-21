@@ -8,8 +8,7 @@ require_once '../common/common.php';
 
 $err[] = '';
 
-try
-{
+try {
     $sql = 'SELECT id,name FROM users WHERE 1';
     $stmt = connect()->prepare($sql);
     $stmt->execute();
@@ -18,5 +17,6 @@ try
     err_common($e, $smarty);
 }
 
+$smarty->assign('title', "アカウント一覧");
 $smarty->assign('user', $stmt);
 $smarty->display('../smarty/templates/user/user_list.tpl');

@@ -24,5 +24,10 @@ if (isset($_POST["token"]) && $_POST["token"] === $_SESSION['token']) {
 }
 
 if (isset($err['token']) == false) {
+	$smarty->assign('title', "在庫削除");
     $smarty->display('../smarty/templates/public/stock_delete_done.tpl');
+} else {
+	$smarty->assign('title', "エラー");
+	$smarty->assign('err', $err);
+    $smarty->display('../smarty/templates/err.tpl');
 }

@@ -7,8 +7,7 @@ require_once '../db_connect/db_connect.php';
 require_once '../common/input_check.php';
 require_once '../common/common.php';
 
-try
-{
+try {
     $user_data = validateUser($post, $smarty);
 
     $sql = 'UPDATE users SET name = :name, email = :email, password = :pass WHERE id = :user_id';
@@ -36,4 +35,5 @@ try
     err_common($e, $smarty);
 }
 
+$smarty->assign('title', "ユーザー編集");
 $smarty->display('../smarty/templates/user/user_edit_done.tpl');
