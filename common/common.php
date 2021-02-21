@@ -1,7 +1,6 @@
 <?php
 
-function err_common($e, $smarty)
-{
+function err_common($e, $smarty) {
     $err['exception'] = $e->getMessage();
     $smarty->assign('err', $err);
 

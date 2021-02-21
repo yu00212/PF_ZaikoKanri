@@ -5,10 +5,8 @@ require_once '../common/common.php';
 
 $err[] = '';
 
-function connect()
-{
-    try
-    {
+function connect() {
+    try {
         $dsn = 'mysql:dbname=user;host=localhost;charset=utf8';
         $user = 'yusei';
         $pass = 'rogin1111';

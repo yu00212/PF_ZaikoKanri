@@ -8,8 +8,7 @@ require_once '../common/common.php';
 
 $err[] = '';
 
-try
-{
+try {
     $sql = 'SELECT stock_id,purchase_date,deadline,stock_name,price,number FROM stocks WHERE 1';
     $stmt = connect()->prepare($sql);
     $stmt->execute();
@@ -18,5 +17,6 @@ try
     err_common($e, $smarty);
 }
 
+$smarty->assign('title', "在庫一覧");
 $smarty->assign('stock', $stmt);
 $smarty->display('../smarty/templates/public/list.tpl');

@@ -2,8 +2,7 @@
 
 $post = $_POST;
 
-function validateStock($post, $smarty)
-{
+function validateStock($post, $smarty) {
     $err[] = '';
     $stock_data[] = '';
     $limit = 20;
@@ -59,18 +58,20 @@ function validateStock($post, $smarty)
         $stock_data['number'] = $_POST['number'];
     }
 
-    $smarty->assign('err', $err);
-    if (isset($err)) {
+    if (isset($err['purchase_date']) == true || isset($err['stock_deadline']) == true || isset($err['stock_name']) == true || isset($err['stock_price']) == true || isset($err['stock_number']) == true) {
+		$smarty->assign('title', "エラー");
+        $smarty->assign('err', $err);
         $smarty->display('../smarty/templates/err.tpl');
-    }
+    } else {
+		return $stock_data;
+	}
 
-    return array($stock_data);
+    return $stock_data;
 }
 
-function validateUser($post, $smarty)
-{
+function validateUser($post, $smarty) {
     $err[] = '';
-    $user_data[] = '';
+	$user_data[] = '';
     $limit = 20;
     $userLength = mb_strlen($_POST['name']);
     $reg_str = "/\A[a-z\d]{6,50}+\z/i";
@@ -106,12 +107,13 @@ function validateUser($post, $smarty)
     } else {
         $user_data['pass'] = $_POST['pass'];
         $user_data['pass2'] = $_POST['pass2'];
-    }
+	}
 
-    $smarty->assign('err', $err);
-    if (isset($err)) {
+    if (isset($err['name']) == true || isset($err['email']) == true || isset($err['pass']) == true || isset($err['pass2']) == true || isset($err['match']) == true) {
+		$smarty->assign('title', "エラー");
+        $smarty->assign('err', $err);
         $smarty->display('../smarty/templates/err.tpl');
+    } else {
+        return $user_data;
     }
-
-    return array($user_data);
 }

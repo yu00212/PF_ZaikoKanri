@@ -1,92 +1,94 @@
-#menu-list
-{
+#menu-list {
 	position: relative;
-  overflow: hidden;
-  margin-bottom: 30px;
+	overflow: hidden;
+	margin-bottom: 30px;
+	width:100%;
 }
 
-#menu-list ul
-{
+#menu-list ul {
 	position: relative;
-	left: 50%; /* ulを右に50%移動 */
+	left: 45%; /* ulを右に50%移動 */
 	float: left;
-	margin-left: -5px;/* liのmarginの半分をネガティブマージン（しないと右にずれる） */
+	margin-left: -5px;/* liのmarginの半分をネガティブマージン（しないと右にずれる）*/
 }
 
-#menu-list ul li
-{
-  position: relative;
-  list-style: none;
-	left: -55%; /* 左に50%移動 */
-	float: left;
-  margin-left: 15px;
-  border: 2px solid #444;
+#menu-list ul li {
+	position: relative;
+	list-style: none;
+	left: -50%; /* 左に50%移動 */
+	float: left; /* liを横並びに　*/
+	margin-left: 15px;
+	border: 2px solid #444;
 }
 
-#menu-list li a
-{
-  display: block;
-  font-size: 13px;
-  height: 17px;
-  padding: 12px 0 12px;
-  background: #5acdb2;
-  color: #fff;
-  font-weight: bold;
-  text-align: center;
-  text-decoration: none;
-  width:110px;
+#menu-list li a {
+	display: block;
+	font-size: 13px;
+	height: 17px;
+	padding: 12px 0 12px;
+	background: #5acdb2;
+	color: #fff;
+	font-weight: bold;
+	text-align: center;
+	text-decoration: none;
+	width:110px;
 }
 
-#menu-list li a:hover
-{
-  background: rgb(174, 203, 206);
+#menu-list li a:hover {
+	background: rgb(174, 203, 206);
 }
 
-input.search
-{
-  width: 100px;
+input.search {
+	width: 100px;
+}
+
+@media screen and (max-width: 959px) {
+	/* 959px以下に適用されるCSS（タブレット用） */
+	#menu-list ul {
+		left: 43%; /* ulを右に37%移動 */
+	}
+}
+@media screen and (max-width: 480px) {
+	/* 480px以下に適用されるCSS（スマホ用） */
+	#menu-list ul {
+		left: 37%; /* ulを右に37%移動 */
+	}
 }
 
 /*--- table css ---*/
-.sorttbl
-{
-  display: table;
-  border-collapse: collapse; /*隣接するセルのボーダーを重ねて表示 */
-  width: 100%;
+.sorttbl {
+	display: table;
+	border-collapse: collapse; /*隣接するセルのボーダーを重ねて表示 */
+	width: 100%;
 }
 
-.sorttbl th
-{
-  color: #fff;
-  background-color: #5acdb2;
+.sorttbl th {
+	color: #fff;
+	background-color: #5acdb2;
 }
 
-.sorttbl tr
-{
-  display: table-row; /* tr要素のような表示に */
-  border-bottom: 2px solid #444;
-  cursor: pointer; /* リンクカーソル */
+.sorttbl tr {
+	display: table-row; /* tr要素のような表示に */
+	border-bottom: 2px solid #444;
+	cursor: pointer; /* リンクカーソル */
 }
 
 .sorttbl td,
-.sorttbl th
-{
-  display: block;
-  padding: 5px 3px;
-  display: table-cell; /* テーブルの中身の枠を再現 */
-  text-align: center;
+.sorttbl th {
+	display: block;
+	padding: 5px 3px;
+	display: table-cell; /* テーブルの中身の枠を再現 */
+	text-align: center;
 }
 
-.sorttbl td
-{
-  font-weight: bold;
+.sorttbl td {
+	font-weight: bold;
 }
 
-.sorttbl td label
-{
-  display: block;
-  width: 100%;
-  height: 100%;
+.sorttbl td label {
+	display: block;
+	width: 100%;
+	height: 100%;
 }
 
 

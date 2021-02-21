@@ -2,8 +2,7 @@
 
 require_once '../db_connect/db_connect.php';
 
-function getUserByID($sql, $user_id)
-{
+function getUserByID($sql, $user_id) {
     $stmt = connect()->prepare($sql);
     $data[] = $user_id;
     $stmt->execute($data);
@@ -11,8 +10,7 @@ function getUserByID($sql, $user_id)
     return $user_data;
 }
 
-function getStockById($stock_id)
-{
+function getStockById($stock_id) {
     $sql = 'SELECT * FROM stocks WHERE stock_id = ?';
     $stmt = connect()->prepare($sql);
     $data[] = $stock_id;
