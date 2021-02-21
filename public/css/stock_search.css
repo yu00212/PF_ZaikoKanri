@@ -1,19 +1,16 @@
 .sorttbl td,
-.sorttbl th
-{
-  padding: 5px 3px;
-  display: table-cell; /* テーブルの中身の枠をを再現 */
-  text-align: center;
-  vertical-align: top;/* vertical-align: top; 上端揃え*/
+.sorttbl th {
+	padding: 5px 3px;
+	display: table-cell; /* テーブルの中身の枠をを再現 */
+	text-align: center;
+	vertical-align: top;/* vertical-align: top; 上端揃え*/
 }
 
-.sorttbl td
-{
-  font-weight: bold;
+.sorttbl td {
+	font-weight: bold;
 }
 
-.sorttbl th
-{
-  color: #fff!important;
-  background-color: #5acdb2!important;
+.sorttbl th {
+	color: #fff!important;
+	background-color: #5acdb2!important;
 }
