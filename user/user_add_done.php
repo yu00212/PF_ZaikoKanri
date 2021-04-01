@@ -18,6 +18,8 @@ try {
     err_common($e, $smarty);
 }
 
+if (isset($user_data)) {
 $smarty->assign('title', "ユーザー登録");
 $smarty->assign('user_data', $user_data);
 $smarty->display('../smarty/templates/user/user_add_done.tpl');
+}
