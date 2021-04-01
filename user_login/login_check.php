@@ -27,9 +27,9 @@ try {
     $data[] = $user_email;
     $stmt->execute($data);
     $dbh = null;
-    $rec = $stmt->fetch(PDO::FETCH_ASSOC);
+	$rec = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    if (isset($rec['password'])) {
+    if (isset($user_pass) && isset($rec['password'])) {
         if (password_verify($user_pass, $rec['password'])) {
             session_start();
             $_SESSION['login'] = 1;
