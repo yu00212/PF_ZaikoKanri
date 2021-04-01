@@ -9,6 +9,7 @@ $err[] = '';
 $err['select'] = 'ユーザーが選択されていません。';
 
 if (isset($err['select'])) {
+	$smarty->assign('title', "エラー");
 	$smarty->assign('err', $err);
     $smarty->display('../smarty/templates/err.tpl');
 }
