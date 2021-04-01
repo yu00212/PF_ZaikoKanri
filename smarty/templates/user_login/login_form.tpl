@@ -24,10 +24,9 @@
     </form>
 
     <br>
-    <form action = "../user/user_add.html">
+    <form action = "../user/user_add.php">
 		<input type = "submit" value = "新規登録はこちら">
     </form>
 
 </body>
 </html>
-
