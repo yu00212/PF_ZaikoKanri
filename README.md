@@ -1,5 +1,5 @@
 # アプリ名：ZAIKO
-<img width="1440" alt="スクリーンショット 2021-09-28 20 51 57" src="https://user-images.githubusercontent.com/72062892/135081745-db92c7d4-66e2-48b1-90d8-27ac8361f451.png">
+<img width="1440" alt="スクリーンショット 2021-10-04 0 02 22" src="https://user-images.githubusercontent.com/72062892/135759939-12a276b8-3293-4a53-b34d-b0d8ebcb36a8.png">
 
 # 概要
 自宅の日用品や食品の在庫を管理するアプリです。在庫の登録、表示、編集、削除、検索機能がスムーズに行えます。
