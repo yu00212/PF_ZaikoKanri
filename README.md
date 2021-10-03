@@ -28,7 +28,7 @@
    - キーワードで曖昧検索
 
 # ER図
-<img width="905" alt="スクリーンショット 2021-09-11 22 44 10" src="https://user-images.githubusercontent.com/72062892/132950115-98028519-e5ae-4906-a375-bfa0611272b8.png">
+<img width="849" alt="スクリーンショット 2021-10-04 0 27 44" src="https://user-images.githubusercontent.com/72062892/135760869-f88944a3-10ef-4bb0-aee9-23a6c79b657d.png">
 
 # 画面遷移図
 <img width="1176" alt="スクリーンショット 2021-09-13 1 50 36" src="https://user-images.githubusercontent.com/72062892/132996122-3335c522-c7e1-4b8d-a010-b835d0a3422b.png">
