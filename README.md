@@ -37,6 +37,6 @@
 
 フロントエンド：HTML5、CSS、
 
-バックエンド：PHP7.4.15
+バックエンド：PHP7.3.29
 
 インフラ：MySQL8.0.23/phpMyAdmin、Apache2.4.38
