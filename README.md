@@ -35,8 +35,8 @@
 
 # 使用技術
 
-フロントエンド：HTML5、CSS、
+フロントエンド：HTML5、CSS
 
 バックエンド：PHP7.3.29
 
-インフラ：MySQL8.0.23/phpMyAdmin、Apache2.4.38
+インフラ：MySQL7.4.2/phpMyAdmin、Apache2.2.34
