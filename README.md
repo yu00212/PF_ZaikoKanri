@@ -15,6 +15,93 @@
 - 顧客である母と実際にヒアリングを行い、フィードバックをもらいながら要望に合わせて機能を実装。
 - スマホ一つで利用できるようにレスポンシブ対応。
 - コードの可読性、メンテナンス性向上のため、テンプレートエンジンsmartyでビューとロジックのコードを分離。
+　　　　※一部記載。
+
+```
+//在庫一覧表示のロジック
+<?php
+
+require_once '../login_certification/certification.php';
+certification();
+
+require_once '../db_connect/db_connect.php';
+require_once '../common/common.php';
+
+$err[] = '';
+
+try {
+    $sql = 'SELECT stock_id,purchase_date,deadline,stock_name,price,number FROM stocks WHERE 1';
+    $stmt = connect()->prepare($sql);
+    $stmt->execute();
+    $dbh = null;
+} catch (Exception $e) {
+    err_common($e, $smarty);
+}
+
+$smarty->assign('title', "在庫一覧");
+$smarty->assign('stock', $stmt);
+$smarty->display('../smarty/templates/public/list.tpl');
+```
+
+```
+//在庫一覧表示のビュー
+<!DOCTYPE html>
+<html lang = "ja">
+{include file = "../head.tpl" title=$title}
+<link rel = "stylesheet" href = "css/list.css">
+<link rel = "stylesheet" href = "https://use.fontawesome.com/releases/v5.0.4/css/all.css">
+<script src = "https://www.w3schools.com/lib/w3.js"></script>
+</head>
+
+<body>
+
+    <div id = "menu-list">
+        <ul>
+            <li><a href = "../user/user_list.php">アカウント編集</a></li>
+            <li><a href = "../user_login/logout_check.php">ログアウト</a></li>
+        </ul>
+    </div>
+
+    <form method = "post" action = "stock_branch.php">
+        <input type = "submit" name = "disp" value = "参照">
+        <input type = "submit" name = "edit" value = "修正">
+        <input type = "submit" name="delete" value = "削除">
+        <input type = "submit" name="add" value = "追加">
+        <input type = "text" name = "search_name" class = "search">
+        <input type  ="submit" value = "検索">
+        <br>
+
+        <table class = "sorttbl" id = "myTable" border = "2">
+            <tr>
+                <th></th>
+                <th>購入日</th>
+                <th>商品</th>
+                <th>値段</th>
+                <th>数量</th>
+                <th onclick = "w3.sortHTML('#myTable','.item', 'td:nth-child(6)')">消費期限&nbsp;<i class = "fa fa-sort"></i></th>
+            </tr>
+
+            {foreach $stock as $s}
+            <tr class = "item">
+                <td><label><input type = "radio" name = "stock_id" value = "{$s[0]}"></label></td>
+                <td>{$s[1]}</td>
+                <td>{$s[3]}</td>
+                <td>¥{$s[4]}</td>
+                <td>{$s[5]}</td>
+                <td>{$s[2]}</td>
+            </tr>
+            {/foreach}
+        </table>
+
+        <input type = "submit" name = "disp" value = "参照">
+        <input type = "submit" name = "edit" value = "修正">
+        <input type = "submit" name = "delete" value = "削除">
+        <input type = "submit" name = "add" value = "追加">
+    </form>
+
+</body>
+</html>
+```
 
 # 機能一覧（全12機能）
 - ユーザー認証
