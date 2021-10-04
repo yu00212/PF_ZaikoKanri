@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang = "ja">
+<html lang="ja">
 {include file = "../head.tpl" title=$title}
 </head>
 
 <body>
 
-	<p>ログアウトしました。</p>
-	<form action = "./login_form.html">
-		<input type = "submit" value = "ログイン画面へ">
-	</form>
+    <p>ログアウトしました。</p>
+    <form action="./login_form.php">
+        <input type="submit" value="ログイン画面へ">
+    </form>
 
 </body>
-</html>
 
+</html>
