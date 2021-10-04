@@ -31,6 +31,7 @@
 <img width="849" alt="スクリーンショット 2021-10-04 0 27 44" src="https://user-images.githubusercontent.com/72062892/135760869-f88944a3-10ef-4bb0-aee9-23a6c79b657d.png">
 
 # 画面遷移図
+<img width="830" alt="スクリーンショット 2021-10-04 22 08 08" src="https://user-images.githubusercontent.com/72062892/135857080-a38fb544-266a-4680-a484-a28dcea5c413.png">
 
 
 # 使用技術
