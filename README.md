@@ -112,6 +112,7 @@ $smarty->display('../smarty/templates/public/list.tpl');
    - 在庫の登録、詳細表示、編集、削除
    - 一覧表示
    - キーワードで曖昧検索
+   - 表示順切り替え
 
 # ER図
 <img width="849" alt="スクリーンショット 2021-10-04 0 27 44" src="https://user-images.githubusercontent.com/72062892/135760869-f88944a3-10ef-4bb0-aee9-23a6c79b657d.png">
@@ -122,7 +123,7 @@ $smarty->display('../smarty/templates/public/list.tpl');
 
 # 使用技術
 
-フロントエンド：HTML5、CSS
+フロントエンド：HTML5、CSS、JavaScript
 
 バックエンド：PHP7.3.29
 
