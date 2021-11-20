@@ -16,7 +16,7 @@
 - スマホ一つで利用できるようにレスポンシブ対応。
 - コードの可読性、メンテナンス性向上のため、テンプレートエンジンsmartyでビューとロジックのコードを分離。※一部記載。
 
-```
+```php
 //在庫一覧表示のロジック
 <?php
 
@@ -42,7 +42,7 @@ $smarty->assign('stock', $stmt);
 $smarty->display('../smarty/templates/public/list.tpl');
 ```
 
-```
+```php
 //在庫一覧表示のビュー
 <!DOCTYPE html>
 <html lang = "ja">
